@@ -13,3 +13,8 @@
 ## Lesson 3: Microsoft Office Basics
 [Watch AI Video](#)  
 [Submit Assignment](#)
+
+
+
+https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce
+
