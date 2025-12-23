@@ -1,62 +1,168 @@
-
 <!DOCTYPE html>
 <html lang="so">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legend Building Affiliate Page</title>
+    <title>Legend Building - Affiliate Hub</title>
     <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 350px; }
-        img { max-width: 100%; border-radius: 5px; }
-        .btn { display: inline-block; background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 15px; }
+        :root {
+            --primary-color: #1a73e8;
+            --success-color: #28a745;
+            --dark-bg: #0f172a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .badge {
+            background: rgba(40, 167, 69, 0.2);
+            color: #2ecc71;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 200px;
+            background: #1e293b;
+            border-radius: 16px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: block;
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .footer-text {
+            font-size: 11px;
+            color: #475569;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-<div class="card" id="affiliate-card">
-    <h2 id="title">Soo dhowaaw!</h2>
-    <img id="image" src="" alt="Product Image">
-    <p id="description">Dhis mustaqbalkaaga maanta.</p>
-    <a id="link" href="#" class="btn" target="_blank">Hadda ku biir</a>
+<div class="container">
+    <div class="card">
+        <div class="badge">LIVE OPPORTUNITY</div>
+        <h1 id="title">Soo dhowaaw</h1>
+        
+        <div class="image-container">
+            <img id="image" src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=500&auto=format&fit=crop" alt="Marketing">
+        </div>
+
+        <p id="description">Isbedelka noloshaadu halkan ayuu ka bilaabmaa.</p>
+        
+        <a id="link" href="#" class="btn" target="_blank">Hadda bilow →</a>
+        
+        <div class="footer-text">Qayb ka mid ah barnaamijka Legend Building</div>
+    </div>
 </div>
 
 <script>
-    // 1. Liiska alaabtaada (Halkan wax ka bedel)
-    const products = [
+    // Liiska xogta (Halkan ku dar Link-yadaada rasmiga ah)
+    const offers = [
         {
             title: "Legend Building Mentorship",
-            description: "Baro sida dollar looga sameeyo internetka.",
-            image: "https://via.placeholder.com/300x200?text=Legend+Building", 
-            link: "https://tusaale.com/affiliate1"
+            description: "Baro xirfadda Affiliate Marketing oo dollar ku hel gurigaaga adoo jooga.",
+            image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=500&auto=format&fit=crop", 
+            link: "https://tusaale.com/legend"
         },
         {
-            title: "Digital Marketing Course",
-            description: "Noqo khabiir dhanka suuqgeynta casriga ah.",
-            image: "https://via.placeholder.com/300x200?text=Marketing+Course",
-            link: "https://tusaale.com/affiliate2"
+            title: "Dhis Ganacsi Online ah",
+            description: "Ha sugin shaqo, abuuro fursad kuu gaar ah oo mustaqbal leh.",
+            image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=500&auto=format&fit=crop",
+            link: "https://tusaale.com/business"
         },
         {
-            title: "High Ticket Sales Guide",
-            description: "Sida loo iibiyo alaabta qaaliga ah.",
-            image: "https://via.placeholder.com/300x200?text=Sales+Guide",
-            link: "https://tusaale.com/affiliate3"
+            title: "High Ticket Profits",
+            description: "Sidee loo iibiyaa alaabta qaaliga ah si aad u hesho dakhli badan.",
+            image: "https://images.unsplash.com/photo-1611974714851-482061329731?q=80&w=500&auto=format&fit=crop",
+            link: "https://tusaale.com/high-ticket"
         }
     ];
 
-    // 2. Shaqada doorashada automatic-ga ah
-    function displayRandomProduct() {
-        const randomIndex = Math.floor(Math.random() * products.length);
-        const item = products[randomIndex];
-
-        document.getElementById('title').innerText = item.title;
-        document.getElementById('description').innerText = item.description;
-        document.getElementById('image').src = item.image;
-        document.getElementById('link').href = item.link;
+    function updateContent() {
+        const randomItem = offers[Math.floor(Math.random() * offers.length)];
+        
+        document.getElementById('title').innerText = randomItem.title;
+        document.getElementById('description').innerText = randomItem.description;
+        document.getElementById('image').src = randomItem.image;
+        document.getElementById('link').href = randomItem.link;
     }
 
-    // Marka bogga la furo shaqo bilow
-    window.onload = displayRandomProduct;
+    // Waxay isbedeleysaa mar kasta oo bogga la refresh gareeyo
+    window.onload = updateContent;
 </script>
 
 </body>
