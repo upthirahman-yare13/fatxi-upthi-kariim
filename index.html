@@ -13,7 +13,7 @@
         .petal { position: fixed; top: -10%; color: var(--pink); user-select: none; z-index: 1000; pointer-events: none; animation: fall linear forwards; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* Hero Section - Island Theme */
+        /* Hero Section */
         .hero { 
             height: 100vh; 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1200'); 
@@ -21,29 +21,46 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 30px var(--gold); object-fit: cover; }
-        h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--gold); margin: 10px 0; }
+        .profile-img { 
+            width: 180px; height: 180px; border-radius: 50%; 
+            border: 4px solid var(--gold); box-shadow: 0 0 30px var(--gold); 
+            object-fit: cover; animation: heartbeat 2s infinite;
+        }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* Sections */
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--gold); margin: 10px 0; }
+
+        /* Journey Counter Card */
+        .counter-box { 
+            background: rgba(212, 175, 55, 0.1); 
+            padding: 25px; border-radius: 20px; 
+            border: 1px solid var(--gold); 
+            margin: 20px; box-shadow: 0 0 15px rgba(212,175,55,0.2);
+            max-width: 300px;
+        }
+        .days-num { font-size: 3rem; font-weight: bold; color: var(--pink); display: block; text-shadow: 0 0 10px var(--pink); }
+
         .section { padding: 60px 20px; border-top: 1px solid #222; }
+        
+        /* Options Card */
         .option-card { 
             background: #111; border: 1px solid var(--gold); border-radius: 20px; 
             padding: 20px; margin: 15px auto; max-width: 400px; cursor: pointer;
             transition: 0.3s;
         }
-        .option-card:hover { transform: scale(1.05); background: #1a1a1a; box-shadow: 0 0 20px var(--gold); }
+        .option-card:hover { transform: scale(1.05); box-shadow: 0 0 25px var(--gold); }
         .option-card img { width: 100%; border-radius: 15px; height: 200px; object-fit: cover; }
 
         /* Quiz Buttons */
         .quiz-btn { 
             display: block; width: 100%; max-width: 400px; margin: 10px auto; 
-            padding: 15px; border-radius: 10px; border: 1px solid var(--pink);
+            padding: 18px; border-radius: 15px; border: 1px solid var(--pink);
             background: transparent; color: white; cursor: pointer; transition: 0.3s;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
-        .quiz-btn:hover { background: var(--pink); color: black; font-weight: bold; }
+        .quiz-btn:hover { background: var(--pink); color: black; font-weight: bold; transform: translateX(10px); }
 
-        .footer-note { padding: 40px; color: var(--gold); font-family: 'Dancing Script', cursive; font-size: 25px; }
+        .footer-note { padding: 50px; color: var(--gold); font-family: 'Dancing Script', cursive; font-size: 28px; }
     </style>
 </head>
 <body>
@@ -51,66 +68,75 @@
     <div class="hero">
         <img src="https://i.ibb.co/3ykG8Lw/IMG-20250912-WA0005.jpg" class="profile-img">
         <h1>Rumaan ❤️</h1>
-        <p style="font-size: 1.2rem; max-width: 80%;">Ku soo dhawoow Jasiiradda Upthirahmaan kuu dhisay si aad u dareento boqornimadaada.</p>
-        <div style="margin-top: 20px; animation: bounce 2s infinite;">⬇️ Hoos u soco</div>
+        
+        <div class="counter-box">
+            <span class="days-num" id="days-count">100+</span>
+            <p style="margin: 0; font-size: 0.9rem;">Maalmood oo aad nolosheyda iftiiminaysay ✨</p>
+        </div>
+
+        <div style="margin-top: 20px; animation: bounce 2s infinite; font-size: 20px;">🌹 Scroll Down</div>
     </div>
 
     <div class="section">
-        <h2 style="color: var(--gold);">Dooro Hadiyaddaada 🎁</h2>
-        <p>Dooro hal mid, waxaana toos WhatsApp-ka ugu sheegi doonaa Upthirahmaan!</p>
+        <h2 style="color: var(--gold); font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Hadiyadda aad rabto 🎁</h2>
+        <p>Rumaan, dooro mid ka mid ah hadiyadahan aan kuu diyaariyay:</p>
         
-        <div class="option-card" onclick="sendGift('Cadarka Luxury-ga ah 🌸')">
+        <div class="option-card" onclick="sendToUpthi('Luxury Perfume 🌸')">
             <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500">
             <h3>Luxury Perfume 🌸</h3>
         </div>
         
-        <div class="option-card" onclick="sendGift('Casho Jasiirad ah 🍽️')">
+        <div class="option-card" onclick="sendToUpthi('Island Dinner 🍽️')">
             <img src="https://images.unsplash.com/photo-1590156221122-c4462101450b?w=500">
-            <h3>Island Dinner 🍽️</h3>
+            <h3>Romantic Dinner 🍽️</h3>
         </div>
 
-        <div class="option-card" onclick="sendGift('Dahab & Luul 💍')">
-            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500">
-            <h3>Jewelry Gift 💍</h3>
+        <div class="option-card" onclick="sendToUpthi('Mystery Surprise Gift 💍')">
+            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500">
+            <h3>Mystery Gift 💍</h3>
         </div>
     </div>
 
     <div class="section" style="background: #0a0a0a;">
-        <h2 style="color: var(--pink);">Su'aal Muhiim ah 🤔</h2>
+        <h2 style="color: var(--pink); font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Su'aal Qalbiga ah 🤔</h2>
         <p>Upthirahmaan sidee ayuu agtaada ka yahay?</p>
         
-        <button class="quiz-btn" onclick="sendQuiz('Walaal')">1. Walaal</button>
-        <button class="quiz-btn" onclick="sendQuiz('Saaxiib')">2. Saaxiib</button>
-        <button class="quiz-btn" onclick="sendQuiz('Qof aan bari dhow nolosha wadaagi doono')">3. Qof nolosha wadaagi doono 😍</button>
-        <button class="quiz-btn" onclick="sendQuiz('Gabar/Muraayad aan iska dhex arko')">4. Dunidda oo dhan 🌎</button>
+        <button class="quiz-btn" onclick="sendToUpthi('Jawaabta: Walaal')">1. Walaal</button>
+        <button class="quiz-btn" onclick="sendToUpthi('Jawaabta: Saaxiib')">2. Saaxiib</button>
+        <button class="quiz-btn" onclick="sendToUpthi('Jawaabta: Qof nolosha wadaagi doono 😍')">3. Qof nolosha wadaagi doono 😍</button>
+        <button class="quiz-btn" onclick="sendToUpthi('Jawaabta: Dunidda oo dhan 🌎')">4. Dunidda oo dhan 🌎</button>
     </div>
 
     <div class="footer-note">
-        Built with Love by Upthirahmaan
+        Built with ❤️ by Upthirahmaan
     </div>
 
     <script>
-        const myNum = "252771941086";
+        // Lambarkaaga saxda ah
+        const myWhatsApp = "252613040087";
 
-        function sendGift(giftName) {
-            const msg = `Haye Upthirahmaan, surprise-ka jasiiradda waa qurux badnaa! Hadiyadda aan doortay waa: ${giftName}`;
-            window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
+        // Counter logic - Waxaan u dejiyay Aug 15, 2025 (in ka badan 130 maalmood)
+        const startDate = new Date(2025, 7, 15); 
+        const today = new Date();
+        const diffInMs = Math.abs(today - startDate);
+        const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+        document.getElementById('days-count').innerText = diffInDays;
 
-        function sendQuiz(answer) {
-            const msg = `Upthirahmaan, su'aashaadii jawaabteedu waa: ${answer}. ❤️`;
-            window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(msg)}`, '_blank');
+        function sendToUpthi(text) {
+            const finalMsg = encodeURIComponent("Haye Upthirahmaan, " + text);
+            window.open(`https://wa.me/${myWhatsApp}?text=${finalMsg}`, '_blank');
         }
 
         // Falling Petals
         setInterval(() => {
             const p = document.createElement('div');
-            p.innerHTML = '🌹'; p.className = 'petal';
+            p.innerHTML = '🌸'; p.className = 'petal';
             p.style.left = Math.random() * 100 + 'vw';
+            p.style.fontSize = Math.random() * 20 + 10 + 'px';
             p.style.animationDuration = Math.random() * 3 + 2 + 's';
             document.body.appendChild(p);
             setTimeout(() => p.remove(), 5000);
         }, 300);
     </script>
 </body>
-    </html>
+            </html>
