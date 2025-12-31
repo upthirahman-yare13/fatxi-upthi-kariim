@@ -3,148 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Zuhuur | PhD Medical Researcher & Super AI Bot</title>
+    <title>Dr. Zuhuur | PhD Medical Researcher & Expert AI</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:wght@700&family=Libre+Barcode+39&display=swap" rel="stylesheet">
     
     <style>
-        :root { --navy: #0a192f; --gold: #c5a059; --white: #ffffff; --light: #f8fafc; }
+        :root { --navy: #0a192f; --gold: #c5a059; --white: #ffffff; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--white); color: var(--navy); scroll-behavior: smooth; }
 
-        /* Modern Navigation */
-        nav { padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; background: var(--navy); color: white; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); }
+        nav { padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; background: var(--navy); color: white; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); }
 
-        /* Hero */
         .hero { padding: 80px 8%; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 5px solid var(--gold); text-align: center; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 3.5rem); margin: 0; color: var(--navy); }
-        .hero p { color: #475569; font-size: 1.1rem; max-width: 600px; margin: 20px auto; }
-
-        .btn-group { margin-top: 30px; }
-        .social-btn { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 5px; transition: 0.3s; color: white; font-size: 0.9rem; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; }
+        
+        .social-btn { display: inline-flex; align-items: center; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 10px 5px; color: white; }
         .tiktok-btn { background: #000; }
         .wa-btn { background: #25d366; }
 
-        /* Super Chatbot */
-        #chatbot-launcher { position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10000; font-size: 30px; box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4); border: 2px solid white; }
-        #chat-window { position: fixed; bottom: 110px; left: 30px; width: 340px; background: white; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; border: 1px solid #eee; overflow: hidden; }
-        .chat-header { background: var(--navy); color: white; padding: 20px; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 3px solid var(--gold); }
-        .chat-body { height: 380px; padding: 15px; overflow-y: auto; font-size: 0.88rem; background: #f9fbff; display: flex; flex-direction: column; gap: 12px; }
-        .chat-input-area { padding: 15px; border-top: 1px solid #eee; display: flex; background: white; gap: 10px; }
-        .chat-input-area input { flex: 1; padding: 12px; border: 1.5px solid #e2e8f0; border-radius: 25px; outline: none; transition: 0.3s; }
-        .chat-input-area input:focus { border-color: var(--gold); }
+        /* Floating AI Assistant */
+        #chatbot-launcher { position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10000; font-size: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); border: 2px solid white; }
+        #chat-window { position: fixed; bottom: 110px; left: 30px; width: 340px; background: white; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; border: 1px solid #ddd; overflow: hidden; }
+        .chat-header { background: var(--navy); color: white; padding: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .chat-body { height: 400px; padding: 15px; overflow-y: auto; font-size: 0.9rem; background: #f8fafc; display: flex; flex-direction: column; gap: 12px; }
+        .chat-input-area { padding: 12px; border-top: 1px solid #eee; display: flex; background: white; gap: 8px; }
+        .chat-input-area input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 25px; outline: none; }
         
-        .msg { padding: 12px 16px; border-radius: 18px; max-width: 80%; line-height: 1.5; font-size: 0.85rem; }
-        .bot-msg { background: white; color: var(--navy); align-self: flex-start; border: 1px solid #e2e8f0; border-bottom-left-radius: 2px; }
-        .user-msg { background: var(--navy); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .msg { padding: 12px 16px; border-radius: 18px; max-width: 85%; line-height: 1.5; }
+        .bot-msg { background: white; color: var(--navy); align-self: flex-start; border: 1px solid #e2e8f0; }
+        .user-msg { background: var(--navy); color: white; align-self: flex-end; }
 
-        /* ID Card & Map */
-        .container { max-width: 1000px; margin: 0 auto; padding: 60px 5%; text-align: center; }
-        .id-card { width: 320px; margin: 0 auto; background: white; border-radius: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.1); border: 1px solid #eee; overflow: hidden; transition: 0.3s; }
-        .id-top { background: var(--navy); padding: 25px; color: var(--gold); font-weight: 800; font-size: 0.7rem; letter-spacing: 2px; }
-        .id-img { width: 140px; height: 140px; background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop'); background-size: cover; border-radius: 50%; margin: 25px auto; border: 6px solid #f1f5f9; }
-        .barcode { font-family: 'Libre Barcode 39'; font-size: 3rem; opacity: 0.7; margin-bottom: 20px; }
-
-        /* Appointments */
-        .booking-section { background: #f1f5f9; padding: 40px 20px; border-radius: 30px; margin: 60px 0; border: 1px solid #e2e8f0; }
-        input[type="date"] { padding: 12px; border-radius: 10px; border: 1.5px solid #cbd5e1; font-family: inherit; width: 220px; margin-bottom: 15px; }
-        .book-btn { background: var(--navy); color: white; padding: 14px 35px; border: none; border-radius: 50px; cursor: pointer; font-weight: 800; transition: 0.3s; }
-        .book-btn:hover { background: var(--gold); transform: translateY(-2px); }
-
-        .map-container { width: 100%; height: 400px; border-radius: 25px; border: 2px solid var(--gold); margin-top: 30px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-
-        footer { padding: 50px; text-align: center; color: #94a3b8; font-size: 0.8rem; border-top: 1px solid #f1f5f9; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 5%; text-align: center; }
+        .id-card { width: 320px; margin: 0 auto; background: white; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #eee; overflow: hidden; }
+        .id-top { background: var(--navy); padding: 25px; color: white; font-weight: 800; font-size: 0.7rem; }
+        .id-img { width: 130px; height: 130px; background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop'); background-size: cover; border-radius: 50%; margin: 25px auto; border: 5px solid #f8fafc; }
+        .barcode { font-family: 'Libre Barcode 39'; font-size: 2.8rem; opacity: 0.6; }
+        
+        .booking-box { background: #f1f5f9; padding: 35px; border-radius: 25px; margin: 50px 0; border: 1px solid #e2e8f0; }
+        .map-container { width: 100%; height: 400px; border-radius: 20px; border: 2px solid var(--gold); margin-top: 25px; overflow: hidden; }
+        footer { padding: 40px; text-align: center; color: #94a3b8; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div id="chatbot-launcher" onclick="toggleChat()">🩺</div>
+    <div id="chatbot-launcher" onclick="toggleChat()">🤖</div>
     <div id="chat-window">
-        <div class="chat-header">
-            <span>Dr. Zuhuur Medical AI</span>
-            <span onclick="toggleChat()" style="cursor:pointer; font-size: 1.5rem;">&times;</span>
-        </div>
+        <div class="chat-header"><span>Dr. Zuhuur Assistant</span><span onclick="toggleChat()" style="cursor:pointer">×</span></div>
         <div class="chat-body" id="chat-body">
-            <div class="msg bot-msg">Asc! Waxaan ahay Kaaliyaha AI ee Dr. Zuhuur. Ma u baahan tahay macluumaad ku saabsan <b>Sokorta, Dhiig-karka, Tallaalka,</b> ama <b>Daawooyinka?</b> Qor waxaad rabto.</div>
+            <div class="msg bot-msg">Asc! Waxaan ahay xog-hayaha caqliga badan ee Dr. Zuhuur. Weydii wax kasta oo ku saabsan <b>Cudurada, Nafaqada, Tallaalka, ama Daawooyinka</b>. Sideen kuu caawiyaa?</div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Weydii wax kasta..." onkeypress="if(event.key==='Enter') processChat()">
+            <input type="text" id="chat-input" placeholder="Qor su'aal kasta..." onkeypress="if(event.key==='Enter') processChat()">
         </div>
     </div>
 
-    <nav>
-        <div class="logo">DR. ZUHUUR</div>
-        <div style="font-size: 0.65rem; border: 1px solid var(--gold); padding: 5px 12px; color: var(--gold); font-weight: 800; border-radius: 4px; letter-spacing: 1px;">MEDICAL RESEARCHER (PhD)</div>
-    </nav>
+    <nav><div class="logo">DR. ZUHUUR</div></nav>
 
     <section class="hero">
-        <h1>PhD Medical Strategy & Research</h1>
-        <p>Expert Clinical Consultant & Scientist. Waxaan bixinaa daryeel caafimaad oo ku dhisay cilmi-baaris qoto dheer.</p>
-        <div class="btn-group">
-            <a href="https://vm.tiktok.com/ZMD2GHmXd/" class="social-btn tiktok-btn" target="_blank">TikTok Profile</a>
-            <a href="https://wa.me/252617911816" class="social-btn wa-btn" target="_blank">WhatsApp Direct</a>
+        <h1>Dr. Zuhuur (PhD)</h1>
+        <p>Expert Medical Researcher & Clinical Consultant. Daryeel ku dhisay aqoon iyo cilmi-baaris.</p>
+        <div>
+            <a href="https://vm.tiktok.com/ZMD2GHmXd/" class="social-btn tiktok-btn">TikTok</a>
+            <a href="https://wa.me/252617911816" class="social-btn wa-btn">WhatsApp</a>
         </div>
     </section>
 
     <div class="container">
         <div class="id-card">
-            <div class="id-top">OFFICIAL MEDICAL LICENSE</div>
+            <div class="id-top">PHD MEDICAL RESEARCHER</div>
             <div class="id-img"></div>
-            <h3 style="margin-bottom: 5px;">Dr. Zuhuur</h3>
-            <p style="color: var(--gold); font-weight: 700; margin-top: 0; font-size: 0.85rem;">PhD IN CLINICAL SYSTEMS</p>
-            <div style="font-size: 0.75rem; color: #64748b; margin: 15px 0;">ID: ZH-816-2025-RESEARCH</div>
+            <h3>Dr. Zuhuur</h3>
             <div class="barcode">*617911816*</div>
         </div>
 
-        <div class="booking-section">
-            <h2 style="font-family: 'Playfair Display'; margin-bottom: 10px;">Qabso Ballan (PhD Consultation)</h2>
-            <p style="color: #64748b; margin-bottom: 25px;">Dooro taariikhda kugu habboon si aad ula kulanto Dr. Zuhuur.</p>
-            <input type="date" id="appointment-date"> <br>
-            <button onclick="bookDate()" class="book-btn">Confirm Appointment</button>
+        <div class="booking-box">
+            <h2>Qabso Ballan PhD Level ah</h2>
+            <input type="date" id="app-date" style="padding:12px; border-radius:10px; border:1px solid #ccc;">
+            <button onclick="bookNow()" style="background:var(--navy); color:white; padding:12px 25px; border:none; border-radius:10px; cursor:pointer;">Book Now</button>
         </div>
 
-        <h2>Xarunta Daru-salaam</h2>
-        <p style="color: #64748b;">Dabaqyada Banana, Mogadishu, Somalia</p>
+        <h2>Xafiiska Daru-salaam</h2>
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.0!2d45.3000!3d2.0333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMDEnNTkuOSJOIDQ1wrAxOCcwMC4wIkU!5e0!3m2!1sen!2sso!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="http://googleusercontent.com/maps.google.com/6" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
-    <footer>
-        © 2025 DR. ZUHUUR | PhD Medical Researcher <br>
-        <span style="letter-spacing: 2px; color: var(--gold);">SYSTEM BY UPTHIRAHMAAN</span>
-    </footer>
+    <footer>© 2025 DR. ZUHUUR | SYSTEM BY UPTHIRAHMAAN</footer>
 
     <script>
-        // MEGA MEDICAL KNOWLEDGE BASE (Super Intelligence)
-        const megaDB = {
-            // Cudurada Raagay (Chronic)
-            "sokor": "Sokorta (Diabetes) waxay u baahan tahay kantarool joogto ah. Dr. Zuhuur waxay bixisaa qorshe nafaqo iyo baaritaan. Qiimaha la-talinta VIP waa $50.",
-            "dhiig": "Dhiig-karku waa 'Silent Killer'. Iska yaree milixda, joogtee socodka. Waxaan qabanaa baaritaan dhiig-kar ah oo dhammaystiran.",
-            "kalyo": "Kalyaha waa in la ilaaliyo iyadoo la cabayo biyo ku filan. Haddii aad isku aragto barar ama kaadi xanuun, ballan qabso degdeg.",
-            "wadne": "Xanuunada wadnaha waxay u baahan yihiin khibrad PhD ah. Waxaan bixinaa cilmi-baaris ku saabsan habka wadnahaagu u shaqaynayo.",
-            
-            // Cudurada Faafa & Guud
-            "duumo": "Duumada (Malaria) waxaa lagu aqoonsadaa qandho iyo dhaxan. Waxaan haynaa baaritaan degdeg ah iyo daawooyinka ku habboon.",
-            "tiibi": "Tiibishadu waa cudur la daweyn karo. Haddii aad qufacayso in ka badan 2 toddobaad, u imaan Dr. Zuhuur si laguu baaro.",
-            "xumad": "Xumaddu waa calaamad, ee ma ahan cudur. Isticmaal Paracetamol ($1.50) si aad u dejiso, haddii ay sii socotana noo keen.",
-            
+        const healthBrain = {
+            // Cudurada Raagay & Halista ah
+            "sokor": "<b>Sokorta (Diabetes):</b> Waa xaalad u baahan kantarool adag. Waxaan bixinaa baaritaan dhiig, qorshe cunto (Meal Plan), iyo la-talin PhD ah si looga fogaado dhibaatooyinka kalyaha iyo indhaha. Qiimaha la-talinta waa $50.",
+            "dhiig": "<b>Dhiig-karka (Hypertension):</b> Waxaa loogu yeeraa 'Silent Killer'. Dr. Zuhuur waxay kuu samaynaysaa baaritaan dhinac kasta ah iyo habka nolosha loo beddelo si wadnaha loo ilaaliyo.",
+            "wadne": "<b>Caafimaadka Wadnaha:</b> Haddii aad isku aragto neef-qabatin ama xabad xanuun, fadlan ballan degdeg ah qabso. Cilmi-baarista PhD-da ee Dr. Zuhuur waxay ku salaysan tahay badbaadinta nidaamka wadnaha.",
+            "kalyo": "<b>Kalyaha:</b> Ilaalinta kalyaha waa muhiim. Ka fogow milixda badan, cab biyo ku filan. Haddii aad isku aragto isbeddel dhanka kaadida ah, noo kaalay.",
+
             // Hooyada & Carruurta
-            "tallaal": "Waxaan haynaa dhamaan tallaalada carruurta (BCG, Polio, Measles). Tallaalku waa difaaca kowaad ee nolosha ubadkaaga.",
-            "dhalmo": "Daryeelka hooyada (ANC) iyo dhalmada ka dib waa takhasuskayaga. VIP Consultation-ka PhD-da waa $50.",
-            "carruur": "Xanuunada carruurta, nafaqada, iyo koritaanka waxaan u haynaa khubaro PhD ah. Ballan hadda qabso.",
-            
-            // Daawooyinka & Qiimaha
-            "qiimaha": "La-talin: $50 | Buugga Medical Guide: $10 | Baaritaan General: $30. Lacagta ku soo dir EVC: 617911816.",
-            "paracetamol": "Haa, waa la hayaa. Qiimuhu waa $1.50 sanduuqii.",
-            "antibiotic": "Daawooyinka Antibiotics-ka laguma bixiyo WhatsApp. Waa in baaritaan lagu sameeyaa xafiiska marka hore.",
-            "vitamin": "Waxaan haynaa Vitamins-ka carruurta iyo dadka waaweyn si loo xoojiyo difaaca jirka.",
-            
-            // Xogta Xafiiska
-            "location": "Xafiiskayagu wuxuu ku yaallaa Daru-salaam, Xafada Banana, Dabaqyada Cusub, Mogadishu.",
-            "evc": "Fadlan lacagta ku soo dir lambarka EVC Plus: 617911816.",
-            "asc": "Wacalaykum Salaam! Sideen kuu caawin karaa? Ma u baahan tahay macluumaad ku saabsan daawo ama ballan qabsi?",
-            "mahadsanid": "Adaa mudan! Dr. Zuhuur mar walba waxay diyaar u tahay daryeelkaaga."
+            "tallaal": "<b>Tallaalka Carruurta:</b> Waxaan haynaa dhamaan tallaalada muhiimka ah sida BCG, Polio, iyo Measles. Tallaalku waa jidka kaliya ee looga hortago curyaannimada iyo cudurada dilaaga ah. Waa la hayaa hadda.",
+            "dhalmo": "<b>Daryeelka Uurka:</b> Dr. Zuhuur waxay bixisaa adeegga 'Antenatal Care' oo dhammaystiran, oo ay ku jirto la-socodka nafaqada hooyada iyo koritaanka uurjiifka. Ballan qabso si aad u hesho daryeel VIP ah.",
+            "carruur": "<b>Caafimaadka Dhallaanka:</b> Laga bilaabo dhalashada ilaa qaan-gaarnimada, waxaan bixinaa talooyin caafimaad, nafaqayn, iyo baaritaano lagu xaqiijinayo koritaankooda maskaxeed iyo midka jireed.",
+
+            // Nafaqada & Vitamins
+            "nafaqo": "<b>Nafaqada:</b> Cuntadu waa daawada ugu horreysa. Waxaan kuu diyaarinaynaa jadwal cunto oo cilmiyeysan haddii aad tahay qof cayillan, mid dhuuban, ama leh xanuuno gaar ah.",
+            "vitamin": "<b>Vitamins:</b> Waxaan haynaa Vitamin C, D, Zinc iyo Multivitamins tayo sare leh oo loogu talagalay xoojinta difaaca jirka (Immune System).",
+
+            // Adeegyada & Qiimaha
+            "qiimaha": "<b>Liiska Qiimaha:</b> <br>• La-talin PhD: $50<br>• Baaritaan Guud: $30<br>• Buugga Medical Guide (PDF): $10<br>• Tallaalka: (Kala xiriir xafiiska). Lacagta: EVC 617911816.",
+            "location": "<b>Halkee nala helaa?</b> Waxaan ku naalaa Daru-salaam, Xafada Banana, Dabaqyada Cusub. Waxaad noogu imaan kartaa inta u dhaxaysa 8:00 AM ilaa 5:00 PM.",
+            "daawo": "Haa, xafiiska waxaa ku yaal pharmacy leh daawooyinka daruuriga ah. Noo soo qor magaca daawada si aan qiimaha kuugu sheegno.",
+            "paracetamol": "Haa, Paracetamol waa la hayaa. Qiimuhu waa $1.50.",
+            "panadol": "Haa, Panadol Extra waa la hayaa. Qiimuhu waa $2.00.",
+
+            // Salaanta
+            "asc": "Wacalaykum Salaam! Ku soo dhowaw xafiiska Dr. Zuhuur. Maxaan kaaga caawiyaa dhanka caafimaadka maanta?",
+            "mahadsanid": "Adaa mudan! Caafimaadkaagu waa hadafkayaga koowaad. Dr. Zuhuur waxay kuu rajaynaysaa caafimaad taam ah."
         };
 
         function toggleChat() {
@@ -162,12 +134,11 @@
             body.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
             input.value = "";
 
-            let reply = "Waan ka xumahay, xogtaas hadda database-ka kuma jirto. Fadlan si toos ah u weydii Dr. Zuhuur WhatsApp: +252617911816";
+            let reply = "Waan ka xumahay, su'aashaas hadda jawaab faahfaahsan uma hayo, laakiin Dr. Zuhuur ayaa si toos ah kaaga jawaabi karta WhatsApp: +252617911816. Ma rabtaa inaan kugu caawiyo Qiimaha ama Location-ka?";
 
-            // Advanced Word Matching
-            for (let key in megaDB) {
+            for (let key in healthBrain) {
                 if (text.includes(key)) {
-                    reply = megaDB[key];
+                    reply = healthBrain[key];
                     break;
                 }
             }
@@ -175,13 +146,13 @@
             setTimeout(() => {
                 body.innerHTML += `<div class="msg bot-msg">${reply}</div>`;
                 body.scrollTop = body.scrollHeight;
-            }, 600);
+            }, 500);
         }
 
-        function bookDate() {
-            let date = document.getElementById('appointment-date').value;
-            if(!date) { alert("Fadlan dooro taariikhda"); return; }
-            window.open("https://wa.me/252617911816?text=Waxaan+rabaa+ballan+PhD+Consultation+ah+taariikhda+"+date, "_blank");
+        function bookNow() {
+            let date = document.getElementById('app-date').value;
+            if(!date) return alert("Fadlan dooro taariikh");
+            window.open(`https://wa.me/252617911816?text=Waxaan+rabaa+ballan+caafimaad+taariikhda+${date}`, "_blank");
         }
     </script>
 </body>
