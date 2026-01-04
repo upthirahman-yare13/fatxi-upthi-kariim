@@ -3,221 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACCA Global Academy | University Implementation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,600;1,700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>ACCA Somalia | Global Professional Academy</title>
+    <meta name="description" content="Ka hirgeli mustaqbalkaaga maaliyadeed ACCA Somalia.">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
     <style>
         :root {
-            --primary-blue: #003366;
-            --gold: #C5A022;
-            --accent-red: #E31E24; /* ACCA Official Red */
-            --light-grey: #f8f9fa;
+            --acca-red: #E31E24;
+            --navy-blue: #002B5B;
+            --gold: #D4AF37;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
         }
 
-        * { box-sizing: border-box; transition: all 0.3s ease; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; background: #fff; color: #333; line-height: 1.6; }
+        * { box-sizing: border-box; transition: 0.3s ease; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background: #fdfdfd; color: #333; overflow-x: hidden; }
 
-        /* Header & Navigation */
+        /* Navigation */
         nav {
-            background: var(--primary-blue); padding: 15px 5%;
+            background: var(--navy-blue); padding: 20px 8%;
             display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-        .logo-area { display: flex; align-items: center; }
-        .logo-text { color: var(--gold); font-family: 'Crimson Text', serif; font-size: 1.8rem; font-weight: bold; }
-        
-        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        .logo { font-family: 'Crimson Text', serif; color: var(--gold); font-size: 1.8rem; font-weight: bold; }
+        nav a { color: white; text-decoration: none; margin-left: 30px; font-weight: 600; font-size: 0.9rem; }
         nav a:hover { color: var(--gold); }
 
         /* Hero Section */
         .hero {
-            height: 85vh;
-            background: linear-gradient(rgba(0,51,102,0.85), rgba(0,51,102,0.85)), 
-                        url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400');
+            height: 90vh;
+            background: linear-gradient(rgba(0,43,91,0.85), rgba(0,43,91,0.85)), 
+                        url('https://images.unsplash.com/photo-1554224155-1696413565d3?w=1400');
             background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: white; padding: 20px;
         }
-        .hero h1 { font-family: 'Crimson Text', serif; font-size: 4.5rem; margin: 0; line-height: 1; }
-        .hero p { font-size: 1.4rem; max-width: 900px; margin: 25px 0; font-weight: 300; }
+        .hero h1 { font-family: 'Crimson Text', serif; font-size: 4.8rem; margin: 0; line-height: 1.1; }
+        .hero p { font-size: 1.4rem; max-width: 800px; margin: 30px 0; color: #ccc; }
 
-        /* Statistics */
-        .stats {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            background: var(--gold); width: 85%; margin: -60px auto 0;
-            border-radius: 15px; padding: 40px; text-align: center; color: var(--primary-blue);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        /* Features Section */
+        .features {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; padding: 100px 8%; background: var(--white);
         }
-        .stat-item h2 { font-size: 2.5rem; margin: 0; }
+        .feature-card {
+            padding: 50px; text-align: center; border-radius: 20px;
+            background: #fff; border: 1px solid #eee; box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+        }
+        .feature-card i { font-size: 3rem; color: var(--acca-red); margin-bottom: 25px; }
 
-        /* ACCA Roadmap - 13 Papers */
-        .roadmap-section { padding: 100px 5%; background: var(--light-grey); }
-        .grid-container {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px; margin-top: 50px;
+        /* Pricing/Course Section */
+        .courses { padding: 100px 8%; background: #f8f9fa; }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .course-card {
+            background: white; border-radius: 25px; overflow: hidden; border: 1px solid #ddd;
+            position: relative;
         }
-        .level-card {
-            background: white; padding: 40px; border-top: 8px solid var(--accent-red);
-            border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        .course-card .price {
+            position: absolute; top: 20px; right: 20px; background: var(--acca-red);
+            color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold;
         }
-        .level-card h3 { color: var(--primary-blue); font-size: 1.5rem; border-bottom: 2px solid var(--light-grey); padding-bottom: 15px; }
-        .level-card ul { list-style: none; padding: 0; }
-        .level-card li { padding: 12px 0; border-bottom: 1px solid #f1f1f1; display: flex; align-items: center; }
-        .level-card li i { color: var(--accent-red); margin-right: 12px; font-size: 0.9rem; }
+        .course-info { padding: 40px; }
+        .btn-join {
+            background: var(--navy-blue); color: white; border: none; padding: 18px;
+            width: 100%; border-radius: 12px; font-weight: 800; cursor: pointer; margin-top: 20px;
+        }
 
-        /* Admission Form */
-        .admission-section {
-            display: grid; grid-template-columns: 1fr 1fr;
-            background: var(--primary-blue); color: white; padding: 100px 10%; gap: 80px;
+        /* Registration Portal */
+        .portal {
+            background: var(--navy-blue); color: white; padding: 100px 8%;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
         }
-        .form-box { background: white; padding: 50px; border-radius: 20px; color: #333; }
-        .form-box input, .form-box select {
-            width: 100%; padding: 15px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
+        .form-container {
+            background: white; padding: 50px; border-radius: 25px; color: #333;
         }
-        .btn-apply {
-            background: var(--accent-red); color: white; border: none; padding: 18px;
-            width: 100%; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 1.1rem;
+        .form-container input, .form-container select {
+            width: 100%; padding: 15px; margin: 15px 0; border: 1px solid #ddd; border-radius: 10px;
         }
-        .btn-apply:hover { background: #b3161a; transform: translateY(-3px); }
 
-        /* Map Section */
-        .map-area { padding: 80px 10%; text-align: center; }
-        .map-frame { border-radius: 30px; overflow: hidden; border: 8px solid var(--light-grey); margin-top: 40px; }
+        /* Map Section - Mogadishu, Hodan */
+        .map-section { padding: 100px 8%; text-align: center; }
+        .map-box { border-radius: 30px; overflow: hidden; border: 10px solid #eee; margin-top: 50px; }
 
         /* Footer */
-        footer { background: #00152b; color: white; padding: 80px 10%; text-align: center; }
-        .social-links i { font-size: 2rem; margin: 0 20px; color: var(--gold); cursor: pointer; }
+        footer { background: #001524; color: white; padding: 80px 8%; text-align: center; }
+        .qr-footer { background: white; padding: 10px; display: inline-block; border-radius: 10px; margin-top: 20px; }
 
-        /* Animations */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero h1, .hero p { animation: fadeInUp 1s ease forwards; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .portal { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-area">
-            <div class="logo-text">ACCA GLOBAL | UNIVERSITY</div>
-        </div>
-        <div class="menu">
-            <a href="#about">Academic</a>
-            <a href="#pathway">Pathway</a>
-            <a href="#admission">Admission</a>
+        <div class="logo">ACCA SOMALIA</div>
+        <div class="links">
+            <a href="#about">About</a>
+            <a href="#courses">Exams</a>
+            <a href="#portal">Admission</a>
             <a href="https://wa.me/252613040087">Support</a>
         </div>
     </nav>
 
     <header class="hero">
-        <p style="letter-spacing: 5px; font-weight: 600;">BECOME A CHARTERED ACCOUNTANT</p>
-        <h1>Master the Language of Business</h1>
-        <p>Ku biir boqolaal arday oo ka hirgelinaya shahaadada caalamiga ah ee ACCA gudaha Jaamacadda Kismaayo. Noqo hogaamiye maaliyadeed oo caalami ah.</p>
-        <a href="#admission" class="btn-apply" style="width: auto; padding: 20px 60px; text-decoration: none;">BILOW CODSIGAAGA</a>
+        <p style="letter-spacing: 5px; color: var(--gold); font-weight: 800;">GLOBAL CAREER START HERE</p>
+        <h1>U Diyaar Garow <br>ACCA Exams 2026</h1>
+        <p>Ku xirnow nidaamka caalamiga ah ee xisaabaadka. Waxaan kuu diyaarinay macalimiin khubaro ah iyo manhajkii ugu dambeeyay.</p>
+        <div style="margin-top: 40px;">
+            <a href="#portal" style="background: var(--acca-red); color: white; padding: 20px 50px; border-radius: 50px; text-decoration: none; font-weight: bold;">BILOW CODSIGAAGA</a>
+        </div>
     </header>
 
-    <section class="stats">
-        <div class="stat-item"><h2>180+</h2><p>Countries Recognized</p></div>
-        <div class="stat-item"><h2>13</h2><p>Professional Exams</p></div>
-        <div class="stat-item"><h2>98%</h2><p>Employment Rate</p></div>
-        <div class="stat-item"><h2>24/7</h2><p>Student Support</p></div>
-    </section>
+    <div class="features">
+        <div class="feature-card">
+            <i class="fa fa-university"></i>
+            <h3>Dagmada Hodan</h3>
+            <p>Xaruntayadu waxay ku taal wadnaha Muqdisho, meel u dhow jaamacadaha waaweyn.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-certificate"></i>
+            <h3>Global Certificate</h3>
+            <p>Shahaado laga aqoonsan yahay in ka badan 180 waddan oo caalamka ah.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa fa-laptop-code"></i>
+            <h3>Digital Exams</h3>
+            <p>Tababar ku saabsan nidaamka CBE (Computer Based Exams) ee ACCA.</p>
+        </div>
+    </div>
 
-    <section class="roadmap-section" id="pathway">
-        <h2 style="text-align: center; font-family: 'Crimson Text'; font-size: 3rem; color: var(--primary-blue);">The ACCA Qualification Journey</h2>
-        <p style="text-align: center; max-width: 700px; margin: auto;">Waa dariiqa aad u marayso inaad xubin ka noqoto ururka xisaabaadka ugu weyn caalamka.</p>
-        
-        <div class="grid-container">
-            <div class="level-card">
-                <h3>1. Applied Knowledge</h3>
-                <ul>
-                    <li><i class="fa fa-book"></i> Business and Technology (BT)</li>
-                    <li><i class="fa fa-book"></i> Management Accounting (MA)</li>
-                    <li><i class="fa fa-book"></i> Financial Accounting (FA)</li>
-                </ul>
-                <p style="font-size: 0.8rem; color: #888; margin-top: 20px;">* Diploma in Accounting and Business</p>
+    <section class="courses" id="courses">
+        <h2 style="text-align: center; font-family: 'Crimson Text'; font-size: 3rem; margin-bottom: 60px;">Level-yada Waxbarashada</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <span class="price">$150/Lvl</span>
+                <div class="course-info">
+                    <h3 style="color: var(--navy-blue);">Applied Knowledge</h3>
+                    <p>Heerka 1-aad: BT, MA, iyo FA. Waa aasaaska xisaabaadka caalamiga ah.</p>
+                    <button class="btn-join" onclick="dalbo('Applied Knowledge')">Hadda Is-diiwaangeli</button>
+                </div>
             </div>
-
-            <div class="level-card">
-                <h3>2. Applied Skills</h3>
-                <ul>
-                    <li><i class="fa fa-layer-group"></i> Corporate & Business Law</li>
-                    <li><i class="fa fa-layer-group"></i> Performance Management</li>
-                    <li><i class="fa fa-layer-group"></i> Taxation (TX)</li>
-                    <li><i class="fa fa-layer-group"></i> Financial Reporting (FR)</li>
-                    <li><i class="fa fa-layer-group"></i> Audit and Assurance (AA)</li>
-                    <li><i class="fa fa-layer-group"></i> Financial Management (FM)</li>
-                </ul>
-            </div>
-
-            <div class="level-card">
-                <h3>3. Strategic Professional</h3>
-                <ul>
-                    <li><i class="fa fa-trophy"></i> Strategic Business Leader (SBL)</li>
-                    <li><i class="fa fa-trophy"></i> Strategic Business Reporting (SBR)</li>
-                    <li><i class="fa fa-trophy"></i> Advanced Financial Mgt (Option)</li>
-                    <li><i class="fa fa-trophy"></i> Advanced Taxation (Option)</li>
-                </ul>
+            <div class="course-card">
+                <span class="price">$250/Lvl</span>
+                <div class="course-info">
+                    <h3 style="color: var(--navy-blue);">Applied Skills</h3>
+                    <p>Heerka 2-aad: 6 Imtixaan oo farsamo ah (Law, TX, FR, AA, FM, PM).</p>
+                    <button class="btn-join" onclick="dalbo('Applied Skills')">Hadda Is-diiwaangeli</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="admission-section" id="admission">
-        <div class="info-side">
-            <h2 style="font-family: 'Crimson Text'; font-size: 3.5rem; line-height: 1.2;">University Intake <br>January 2026</h2>
-            <p>Ma rabaa inaad ka mid noqoto dufcadda ugu horreysa ee ACCA ka bilawda Jaamacadda? Buuxi foomka si aan kuu soo xiriirno.</p>
-            <div style="margin-top: 40px;">
-                <p><i class="fa fa-check-circle" style="color: var(--gold);"></i> Full Study Material (BPP/Kaplan)</p>
-                <p><i class="fa fa-check-circle" style="color: var(--gold);"></i> CBE Exam Center Support</p>
-                <p><i class="fa fa-check-circle" style="color: var(--gold);"></i> Expert Somali Tutors</p>
-            </div>
+    <section class="portal" id="portal">
+        <div>
+            <h2 style="font-family: 'Crimson Text'; font-size: 3.5rem;">University <br>Portal Somalia</h2>
+            <p style="font-size: 1.2rem; margin-top: 30px;">Ku biir jaamacadda hormuudka u ah fidinta aqoonta ACCA ee Soomaaliya. Buuxi foomka si aan kuu soo xiriirno.</p>
+            <ul style="list-style: none; padding: 0; line-height: 2.5;">
+                <li><i class="fa fa-check" style="color: var(--gold);"></i> Study Materials (Kaplan/BPP)</li>
+                <li><i class="fa fa-check" style="color: var(--gold);"></i> Expert Somali & Foreign Tutors</li>
+                <li><i class="fa fa-check" style="color: var(--gold);"></i> Mock Exams & Revision</li>
+            </ul>
         </div>
-        <div class="form-box">
-            <h3 style="text-align: center; margin-bottom: 30px;">Diiwaangelinta Ardayda</h3>
-            <input type="text" id="stdName" placeholder="Magacaaga oo dhammaystiran" required>
-            <input type="email" id="stdEmail" placeholder="Email Address" required>
-            <select id="stdLevel">
-                <option value="None">Dooro Heerka (Level)</option>
+        <div class="form-container">
+            <h3 style="text-align: center; margin-bottom: 30px; color: var(--navy-blue);">Admission Form</h3>
+            <input type="text" id="name" placeholder="Magacaaga oo buuxa" required>
+            <input type="tel" id="tel" placeholder="Lambarka Taleefanka" required>
+            <select id="exam">
+                <option value="">Dooro Heerka aad rabto</option>
                 <option value="Knowledge">Applied Knowledge</option>
                 <option value="Skills">Applied Skills</option>
                 <option value="Professional">Strategic Professional</option>
             </select>
-            <textarea id="stdMsg" style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #ddd; height: 100px;" placeholder="Farriin dheeraad ah..."></textarea>
-            <button class="btn-apply" style="margin-top: 20px;" onclick="sendToWhatsApp()">SOO DIR CODSIGA</button>
+            <button class="btn-join" style="background: var(--acca-red);" onclick="register()">DIR CODSIGA</button>
         </div>
     </section>
 
-    <section class="map-area">
-        <h2 style="font-family: 'Crimson Text'; font-size: 2.5rem; color: var(--primary-blue);">📍 Meesha aan ku Naalo</h2>
-        <p>Waxaad noogu imaan kartaa Xarunta Jaamacadda ee ku taal **Isgoyska Afar-Irdood**, Kismaayo.</p>
-        <div class="map-frame">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.049448962!2d42.5381!3d-0.3582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMjEnMjkuNSJTIDQywrAzMicyNy40IkU!5e0!3m2!1sen!2sso!4v17041000000000" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <section class="map-section">
+        <h2 style="font-family: 'Crimson Text'; font-size: 2.8rem; color: var(--navy-blue);">📍 Xarunteena Muqdisho</h2>
+        <p>Waxaan ku naalaa: **Dagmada Hodan, Meel u dhow Isgoyska Zoobe**, Muqdisho, Somalia.</p>
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.328325633634!2d45.3014!3d2.0468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843469e88d67d%3A0x63346d5257a075d9!2sHodan%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000!5m2!1sen!2sso" 
+                width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
     <footer>
-        <div class="logo-text" style="font-size: 2.5rem; margin-bottom: 20px;">ACCA ACADEMY</div>
-        <p>Global Leaders in Professional Accounting Education</p>
-        <div class="social-links" style="margin: 40px 0;">
-            <i class="fab fa-linkedin"></i>
-            <i class="fab fa-facebook-square"></i>
-            <i class="fab fa-whatsapp" onclick="window.open('https://wa.me/252613040087')"></i>
+        <div class="logo" style="font-size: 2.5rem; margin-bottom: 20px;">ACCA SOMALIA</div>
+        <p>Empowering Somali Professionals Globally</p>
+        <div style="margin: 30px 0;">
+            <i class="fab fa-whatsapp" style="font-size: 2rem; color: var(--gold); cursor: pointer;" onclick="window.open('https://wa.me/252613040087')"></i>
+            <i class="fab fa-linkedin" style="font-size: 2rem; color: var(--gold); margin: 0 30px;"></i>
+            <i class="fab fa-tiktok" style="font-size: 2rem; color: var(--gold);"></i>
         </div>
-        <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 Designed & Developed by Eng. Kooshin Yare | +252 61 3040087</p>
+        <div id="qrcode" class="qr-footer"></div>
+        <p style="opacity: 0.5; margin-top: 40px; font-size: 0.8rem;">© 2026 Developed by Eng. Kooshin Yare | +252 61 3040087</p>
     </footer>
 
     <script>
-        function sendToWhatsApp() {
-            let name = document.getElementById('stdName').value;
-            let level = document.getElementById('stdLevel').value;
-            let msg = document.getElementById('stdMsg').value;
-            
-            if(name === "" || level === "None") {
-                alert("Fadlan buuxi magacaaga iyo heerka aad rabto!");
-                return;
-            }
+        // QR Code
+        new QRCode(document.getElementById("qrcode"), {
+            text: window.location.href,
+            width: 100, height: 100
+        });
 
-            let finalMsg = `Asc ACCA Academy, waxaan rabaa inaan iska diiwaangeliyo barnaamijka jaamacadda. %0A%0AMagaca: ${name} %0AHeerka: ${level} %0AFarriin: ${msg}`;
-            window.open(`https://wa.me/252613040087?text=${finalMsg}`);
+        // WhatsApp Functions
+        function dalbo(level) {
+            let msg = `Asc ACCA Somalia, waxaan rabaa inaan iska diiwaangeliyo heerka: ${level}.`;
+            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(msg)}`);
+        }
+
+        function register() {
+            let name = document.getElementById('name').value;
+            let level = document.getElementById('exam').value;
+            if(name === "") { alert("Fadlan qor magacaaga!"); return; }
+            let msg = `Asc, Magacaygu waa ${name}. Waxaan rabaa inaan iska diiwaangeliyo ACCA Somalia, heerka ${level}.`;
+            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(msg)}`);
         }
     </script>
 </body>
