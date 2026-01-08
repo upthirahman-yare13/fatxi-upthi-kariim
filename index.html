@@ -1,228 +1,91 @@
-<!DOCTYPE html>
-<html lang="so">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACCA Somalia | Global Professional Academy</title>
-    <meta name="description" content="Ka hirgeli mustaqbalkaaga maaliyadeed ACCA Somalia.">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
-    <style>
-        :root {
-            --acca-red: #E31E24;
-            --navy-blue: #002B5B;
-            --gold: #D4AF37;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
-        }
-
-        * { box-sizing: border-box; transition: 0.3s ease; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; background: #fdfdfd; color: #333; overflow-x: hidden; }
-
-        /* Navigation */
-        nav {
-            background: var(--navy-blue); padding: 20px 8%;
-            display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        .logo { font-family: 'Crimson Text', serif; color: var(--gold); font-size: 1.8rem; font-weight: bold; }
-        nav a { color: white; text-decoration: none; margin-left: 30px; font-weight: 600; font-size: 0.9rem; }
-        nav a:hover { color: var(--gold); }
-
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(0,43,91,0.85), rgba(0,43,91,0.85)), 
-                        url('https://images.unsplash.com/photo-1554224155-1696413565d3?w=1400');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: white; padding: 20px;
-        }
-        .hero h1 { font-family: 'Crimson Text', serif; font-size: 4.8rem; margin: 0; line-height: 1.1; }
-        .hero p { font-size: 1.4rem; max-width: 800px; margin: 30px 0; color: #ccc; }
-
-        /* Features Section */
-        .features {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px; padding: 100px 8%; background: var(--white);
-        }
-        .feature-card {
-            padding: 50px; text-align: center; border-radius: 20px;
-            background: #fff; border: 1px solid #eee; box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-        }
-        .feature-card i { font-size: 3rem; color: var(--acca-red); margin-bottom: 25px; }
-
-        /* Pricing/Course Section */
-        .courses { padding: 100px 8%; background: #f8f9fa; }
-        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .course-card {
-            background: white; border-radius: 25px; overflow: hidden; border: 1px solid #ddd;
-            position: relative;
-        }
-        .course-card .price {
-            position: absolute; top: 20px; right: 20px; background: var(--acca-red);
-            color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold;
-        }
-        .course-info { padding: 40px; }
-        .btn-join {
-            background: var(--navy-blue); color: white; border: none; padding: 18px;
-            width: 100%; border-radius: 12px; font-weight: 800; cursor: pointer; margin-top: 20px;
-        }
-
-        /* Registration Portal */
-        .portal {
-            background: var(--navy-blue); color: white; padding: 100px 8%;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-        }
-        .form-container {
-            background: white; padding: 50px; border-radius: 25px; color: #333;
-        }
-        .form-container input, .form-container select {
-            width: 100%; padding: 15px; margin: 15px 0; border: 1px solid #ddd; border-radius: 10px;
-        }
-
-        /* Map Section - Mogadishu, Hodan */
-        .map-section { padding: 100px 8%; text-align: center; }
-        .map-box { border-radius: 30px; overflow: hidden; border: 10px solid #eee; margin-top: 50px; }
-
-        /* Footer */
-        footer { background: #001524; color: white; padding: 80px 8%; text-align: center; }
-        .qr-footer { background: white; padding: 10px; display: inline-block; border-radius: 10px; margin-top: 20px; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .portal { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <div class="logo">ACCA SOMALIA</div>
-        <div class="links">
-            <a href="#about">About</a>
-            <a href="#courses">Exams</a>
-            <a href="#portal">Admission</a>
-            <a href="https://wa.me/252613040087">Support</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <p style="letter-spacing: 5px; color: var(--gold); font-weight: 800;">GLOBAL CAREER START HERE</p>
-        <h1>U Diyaar Garow <br>ACCA Exams 2026</h1>
-        <p>Ku xirnow nidaamka caalamiga ah ee xisaabaadka. Waxaan kuu diyaarinay macalimiin khubaro ah iyo manhajkii ugu dambeeyay.</p>
-        <div style="margin-top: 40px;">
-            <a href="#portal" style="background: var(--acca-red); color: white; padding: 20px 50px; border-radius: 50px; text-decoration: none; font-weight: bold;">BILOW CODSIGAAGA</a>
-        </div>
-    </header>
-
-    <div class="features">
-        <div class="feature-card">
-            <i class="fa fa-university"></i>
-            <h3>Dagmada Hodan</h3>
-            <p>Xaruntayadu waxay ku taal wadnaha Muqdisho, meel u dhow jaamacadaha waaweyn.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fa fa-certificate"></i>
-            <h3>Global Certificate</h3>
-            <p>Shahaado laga aqoonsan yahay in ka badan 180 waddan oo caalamka ah.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fa fa-laptop-code"></i>
-            <h3>Digital Exams</h3>
-            <p>Tababar ku saabsan nidaamka CBE (Computer Based Exams) ee ACCA.</p>
-        </div>
+<div id="smart-chatbot" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999; font-family: 'Montserrat', sans-serif;">
+    <div id="chat-bubble" onclick="openChat()" style="background: var(--acca-red); width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 10px 25px rgba(227,30,36,0.4); transition: 0.4s;">
+        <i class="fas fa-robot" style="color: white; font-size: 28px;"></i>
     </div>
 
-    <section class="courses" id="courses">
-        <h2 style="text-align: center; font-family: 'Crimson Text'; font-size: 3rem; margin-bottom: 60px;">Level-yada Waxbarashada</h2>
-        <div class="course-grid">
-            <div class="course-card">
-                <span class="price">$150/Lvl</span>
-                <div class="course-info">
-                    <h3 style="color: var(--navy-blue);">Applied Knowledge</h3>
-                    <p>Heerka 1-aad: BT, MA, iyo FA. Waa aasaaska xisaabaadka caalamiga ah.</p>
-                    <button class="btn-join" onclick="dalbo('Applied Knowledge')">Hadda Is-diiwaangeli</button>
-                </div>
+    <div id="chat-box" style="display: none; width: 350px; height: 500px; background: white; border-radius: 25px; box-shadow: 0 15px 50px rgba(0,0,0,0.2); flex-direction: column; overflow: hidden; position: absolute; bottom: 80px; right: 0; border: 1px solid #eee; animation: slideUp 0.4s ease;">
+        <div style="background: var(--navy); padding: 20px; color: white; display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 10px; height: 10px; background: #2ecc71; border-radius: 50%;"></div>
+                <span style="font-weight: 800; letter-spacing: 1px;">ACCA AI AGENT</span>
             </div>
-            <div class="course-card">
-                <span class="price">$250/Lvl</span>
-                <div class="course-info">
-                    <h3 style="color: var(--navy-blue);">Applied Skills</h3>
-                    <p>Heerka 2-aad: 6 Imtixaan oo farsamo ah (Law, TX, FR, AA, FM, PM).</p>
-                    <button class="btn-join" onclick="dalbo('Applied Skills')">Hadda Is-diiwaangeli</button>
-                </div>
+            <i class="fas fa-times" onclick="closeChat()" style="cursor: pointer; opacity: 0.7;"></i>
+        </div>
+
+        <div id="chat-content" style="flex: 1; padding: 20px; overflow-y: auto; background: #fdfdfd; display: flex; flex-direction: column; gap: 15px;">
+            <div class="ai-msg" style="background: #f1f1f1; padding: 12px 18px; border-radius: 15px 15px 15px 0; max-width: 85%; align-self: flex-start; font-size: 0.9rem; color: #333; line-height: 1.5;">
+                Asc! 👋 Waxaan ahay kaaliyahaaga dhijitaalka ah. Ma ku caawiyaa inaan iska diiwaangeliso ACCA?
             </div>
         </div>
-    </section>
 
-    <section class="portal" id="portal">
-        <div>
-            <h2 style="font-family: 'Crimson Text'; font-size: 3.5rem;">University <br>Portal Somalia</h2>
-            <p style="font-size: 1.2rem; margin-top: 30px;">Ku biir jaamacadda hormuudka u ah fidinta aqoonta ACCA ee Soomaaliya. Buuxi foomka si aan kuu soo xiriirno.</p>
-            <ul style="list-style: none; padding: 0; line-height: 2.5;">
-                <li><i class="fa fa-check" style="color: var(--gold);"></i> Study Materials (Kaplan/BPP)</li>
-                <li><i class="fa fa-check" style="color: var(--gold);"></i> Expert Somali & Foreign Tutors</li>
-                <li><i class="fa fa-check" style="color: var(--gold);"></i> Mock Exams & Revision</li>
-            </ul>
+        <div id="chat-options" style="padding: 10px; display: flex; gap: 8px; flex-wrap: wrap; background: #fff; border-top: 1px solid #eee;">
+            <button onclick="startFlow('apply')" style="background: white; border: 1.5px solid var(--acca-red); color: var(--acca-red); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">Haa, is-diiwaangeli</button>
+            <button onclick="startFlow('price')" style="background: white; border: 1.5px solid #777; color: #555; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.75rem;">Qiimaha</button>
         </div>
-        <div class="form-container">
-            <h3 style="text-align: center; margin-bottom: 30px; color: var(--navy-blue);">Admission Form</h3>
-            <input type="text" id="name" placeholder="Magacaaga oo buuxa" required>
-            <input type="tel" id="tel" placeholder="Lambarka Taleefanka" required>
-            <select id="exam">
-                <option value="">Dooro Heerka aad rabto</option>
-                <option value="Knowledge">Applied Knowledge</option>
-                <option value="Skills">Applied Skills</option>
-                <option value="Professional">Strategic Professional</option>
-            </select>
-            <button class="btn-join" style="background: var(--acca-red);" onclick="register()">DIR CODSIGA</button>
-        </div>
-    </section>
+    </div>
+</div>
 
-    <section class="map-section">
-        <h2 style="font-family: 'Crimson Text'; font-size: 2.8rem; color: var(--navy-blue);">📍 Xarunteena Muqdisho</h2>
-        <p>Waxaan ku naalaa: **Dagmada Hodan, Meel u dhow Isgoyska Zoobe**, Muqdisho, Somalia.</p>
-        <div class="map-box">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.328325633634!2d45.3014!3d2.0468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843469e88d67d%3A0x63346d5257a075d9!2sHodan%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000!5m2!1sen!2sso" 
-                width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
+<style>
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .typing { font-style: italic; font-size: 0.8rem; color: #999; }
+</style>
 
-    <footer>
-        <div class="logo" style="font-size: 2.5rem; margin-bottom: 20px;">ACCA SOMALIA</div>
-        <p>Empowering Somali Professionals Globally</p>
-        <div style="margin: 30px 0;">
-            <i class="fab fa-whatsapp" style="font-size: 2rem; color: var(--gold); cursor: pointer;" onclick="window.open('https://wa.me/252613040087')"></i>
-            <i class="fab fa-linkedin" style="font-size: 2rem; color: var(--gold); margin: 0 30px;"></i>
-            <i class="fab fa-tiktok" style="font-size: 2rem; color: var(--gold);"></i>
-        </div>
-        <div id="qrcode" class="qr-footer"></div>
-        <p style="opacity: 0.5; margin-top: 40px; font-size: 0.8rem;">© 2026 Developed by Eng. Kooshin Yare | +252 61 3040087</p>
-    </footer>
+<script>
+    let userData = { name: "", level: "" };
+    const chatContent = document.getElementById('chat-content');
 
-    <script>
-        // QR Code
-        new QRCode(document.getElementById("qrcode"), {
-            text: window.location.href,
-            width: 100, height: 100
-        });
+    function openChat() { document.getElementById('chat-box').style.display = 'flex'; }
+    function closeChat() { document.getElementById('chat-box').style.display = 'none'; }
 
-        // WhatsApp Functions
-        function dalbo(level) {
-            let msg = `Asc ACCA Somalia, waxaan rabaa inaan iska diiwaangeliyo heerka: ${level}.`;
-            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(msg)}`);
+    function addMessage(text, type) {
+        const msg = document.createElement('div');
+        msg.style = type === 'ai' 
+            ? "background: #f1f1f1; padding: 12px 18px; border-radius: 15px 15px 15px 0; max-width: 85%; align-self: flex-start; font-size: 0.9rem; color: #333;" 
+            : "background: var(--navy); padding: 12px 18px; border-radius: 15px 15px 0 15px; max-width: 85%; align-self: flex-end; font-size: 0.9rem; color: white;";
+        msg.innerHTML = text;
+        chatContent.appendChild(msg);
+        chatContent.scrollTop = chatContent.scrollHeight;
+    }
+
+    function startFlow(type) {
+        if(type === 'price') {
+            addMessage("Qiimaha", 'user');
+            setTimeout(() => addMessage("Heerka Knowledge waa **$150**, Skills-kana waa **$250**. Ma rabtaa inaan hadda ku diiwaangeliyo?", 'ai'), 800);
+        } else if(type === 'apply') {
+            addMessage("Haa, is-diiwaangeli", 'user');
+            document.getElementById('chat-options').innerHTML = ""; // Clear options
+            setTimeout(() => {
+                addMessage("Waa gartay! Fadlan qor **Magacaaga oo buuxa** hoos:", 'ai');
+                createInput("Magacaaga...");
+            }, 800);
         }
+    }
 
-        function register() {
-            let name = document.getElementById('name').value;
-            let level = document.getElementById('exam').value;
-            if(name === "") { alert("Fadlan qor magacaaga!"); return; }
-            let msg = `Asc, Magacaygu waa ${name}. Waxaan rabaa inaan iska diiwaangeliyo ACCA Somalia, heerka ${level}.`;
-            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(msg)}`);
+    function createInput(placeholder) {
+        const inputDiv = document.createElement('div');
+        inputDiv.style = "padding: 10px; border-top: 1px solid #eee; display: flex;";
+        inputDiv.innerHTML = `<input type="text" id="ai-input" placeholder="${placeholder}" style="flex:1; border:none; outline:none; font-family:Montserrat;">
+                              <button onclick="handleInput()" style="background:var(--acca-red); color:white; border:none; padding:10px 15px; border-radius:10px; cursor:pointer;"><i class="fas fa-paper-plane"></i></button>`;
+        document.getElementById('chat-box').appendChild(inputDiv);
+    }
+
+    function handleInput() {
+        const val = document.getElementById('ai-input').value;
+        if(!val) return;
+        
+        if(!userData.name) {
+            userData.name = val;
+            addMessage(val, 'user');
+            document.getElementById('ai-input').value = "";
+            setTimeout(() => addMessage(`Mahadsanid **${val}**. Heerkee rabtaa: **Knowledge** mise **Skills**?`, 'ai'), 800);
+        } else {
+            userData.level = val;
+            addMessage(val, 'user');
+            setTimeout(() => {
+                addMessage("Nidaamka waa diyaar! Guji badhanka hoose si aad WhatsApp-ka ugu dhammaystirto.", 'ai');
+                const link = `https://wa.me/252613040087?text=${encodeURIComponent('Asc, Magacaygu waa ' + userData.name + '. Waxaan rabaa is-diiwaangelin heerka ' + userData.level)}`;
+                addMessage(`<a href="${link}" target="_blank" style="background:#25D366; color:white; padding:10px; text-decoration:none; border-radius:10px; display:block; text-align:center; font-weight:bold;">DHAMMAYSTIR WHATSAPP-KA</a>`, 'ai');
+            }, 1000);
         }
-    </script>
-</body>
-</html>
+    }
+</script>
