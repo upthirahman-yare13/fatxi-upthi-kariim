@@ -3,115 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN AI | Love Island Live</title>
+    <title>KOOSHIN EXCLUSIVE FILTER | HD</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
-
-        /* Jasiiradda Background-ka ah */
-        .scene {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Live Camera Area (Adiga) */
-        .camera-overlay {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50%;
-            height: 80%;
-            z-index: 10;
-        }
-
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
+        
+        /* Full Screen HD Camera */
+        .viewport { position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; }
+        
         #webcam {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scaleX(-1);
-            filter: brightness(1.1) saturate(1.3) contrast(1.1);
-            mask-image: linear-gradient(to left, black 60%, transparent 100%);
+            width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);
+            /* EXCLUSIVE FILTER: Iftiinka iyo quruxda halkan baa ku jirta */
+            filter: brightness(1.12) contrast(1.1) saturate(1.25) sharpness(1.3);
         }
 
-        /* Gabadha (Cinematic Overlay) */
-        .partner-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50%;
-            height: 90%;
-            background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y1b2R3eHByZzR3eHByZzR3eHByZzR3eHByZzR3eHByZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l41lTjJ8d5XGzY9G0/giphy.gif') no-repeat center bottom;
-            background-size: contain;
-            z-index: 5;
-            animation: slowDance 5s infinite ease-in-out;
+        /* Iftiinka Wajiga (Soft Glow) */
+        .glow-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
         }
 
-        @keyframes slowDance {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            50% { transform: translateX(20px) rotate(2deg); }
+        /* Badhanka Duubista (iPhone Style) */
+        .ui-controls {
+            position: absolute; bottom: 40px; width: 100%;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        .controls {
-            position: absolute;
-            bottom: 40px;
-            z-index: 20;
-            text-align: center;
-            width: 100%;
+        .record-trigger {
+            width: 75px; height: 75px; background: white;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
 
-        .rec-btn {
-            width: 80px; height: 80px;
-            background: rgba(255,255,255,0.2);
-            border: 4px solid #fff;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: auto;
+        .record-trigger.active { background: #ff003c; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        .status-badge {
+            color: #fff; background: rgba(0,242,255,0.3);
+            padding: 5px 15px; border-radius: 20px; font-size: 12px;
+            margin-bottom: 15px; border: 1px solid #00f2ff;
         }
     </style>
 </head>
 <body>
 
-    <div class="scene">
-        <div class="camera-overlay">
-            <video id="webcam" autoplay playsinline muted></video>
-        </div>
+    <div class="viewport">
+        <video id="webcam" autoplay playsinline muted></video>
+        <div class="glow-overlay"></div>
 
-        <div class="partner-overlay"></div>
-
-        <div class="controls">
-            <p style="color: white; text-shadow: 2px 2px 5px #000;">💖 Jawi Jaceyl & Dance 🏝️</p>
-            <div class="rec-btn" onclick="startExperience()"></div>
-            <audio id="loveSong" loop>
-                <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-            </audio>
+        <div class="ui-controls">
+            <div class="status-badge" id="status">4K CINEMATIC MODE</div>
+            <div class="record-trigger" id="recBtn" onclick="startProRecord()">
+                <div style="width: 25px; height: 25px; background: red; border-radius: 50%;"></div>
+            </div>
+            <p style="color: white; font-size: 10px; margin-top: 10px;">KOOSHIN EXCLUSIVE FILTER © 2026</p>
         </div>
     </div>
 
     <script>
-        async function startApp() {
+        let mediaRecorder;
+        let chunks = [];
+        const video = document.getElementById('webcam');
+
+        async function initHD() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user", width: 1280, height: 720 },
+                    video: { facingMode: "user", width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: 60 },
                     audio: true
                 });
-                document.getElementById('webcam').srcObject = stream;
+                video.srcObject = stream;
             } catch (err) {
-                alert("Fadlan oggolow kamaradda!");
+                alert("Fadlan oggolow kamaradda si aad u isticmaasho filter-ka gaarka ah.");
             }
         }
 
-        function startExperience() {
-            const song = document.getElementById('loveSong');
-            song.play();
-            alert("Jawiga Jaceylka iyo Dance-ka waa bilaabmay! 🎵🏝️");
+        function startProRecord() {
+            const btn = document.getElementById('recBtn');
+            const status = document.getElementById('status');
+
+            if (!mediaRecorder || mediaRecorder.state === "inactive") {
+                chunks = [];
+                mediaRecorder = new MediaRecorder(video.srcObject);
+                mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/mp4' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Kooshin_Exclusive_HD.mp4';
+                    a.click();
+                };
+                mediaRecorder.start();
+                btn.classList.add('active');
+                status.innerText = "RECORDING LIVE...";
+            } else {
+                mediaRecorder.stop();
+                btn.classList.remove('active');
+                status.innerText = "SAVING VIDEO...";
+            }
         }
 
-        startApp();
+        initHD();
     </script>
 </body>
 </html>
