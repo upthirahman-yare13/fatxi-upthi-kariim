@@ -3,112 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN AI | iPhone HD Scanner</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <title>KOOSHIN AI | HD Cinematic Camera</title>
     <style>
-        :root { --neon-blue: #00f2ff; --dark-bg: #010409; }
-        body { background: var(--dark-bg); color: white; font-family: 'Montserrat', sans-serif; margin: 0; text-align: center; }
-
-        /* iPhone Style Camera Frame */
-        .camera-wrapper {
-            position: relative;
-            width: 320px;
-            height: 320px;
-            margin: 40px auto;
-            border-radius: 50%;
-            border: 6px solid #1a1a1a;
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2), inset 0 0 20px rgba(0,0,0,0.5);
-            background: #000;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Tani waa Filter-ka iPhone-ka */
+        /* Full Screen Camera Container */
+        .camera-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* iPhone 17 Pro Filter Settings */
         #webcam {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transform: scaleX(-1);
-            filter: brightness(1.1) contrast(1.1) saturate(1.2) sepia(0.05); /* iPhone Color Filter */
-            transition: 0.5s;
+            object-fit: cover; /* Waxay qabanaysaa jirkaaga oo dhan */
+            transform: scaleX(-1); /* Mirror effect */
+            filter: brightness(1.05) contrast(1.1) saturate(1.25) sharpness(1.2);
+            /* Midabada iPhone-ka oo kale ah */
         }
 
-        .scan-overlay {
+        /* Laser Scan Overlay (Cinematic) */
+        .laser-scanner {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(transparent, rgba(0, 242, 255, 0.1));
-            pointer-events: none;
-        }
-
-        .laser {
-            position: absolute;
-            top: 0; width: 100%; height: 3px;
-            background: #ff003c;
-            box-shadow: 0 0 15px #ff003c;
-            animation: moving 3s infinite linear;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, #00f2ff, transparent);
+            box-shadow: 0 0 20px #00f2ff, 0 0 40px #00f2ff;
+            z-index: 10;
             display: none;
+            animation: scan-body 4s infinite ease-in-out;
         }
-        @keyframes moving { 0% { top: 0; } 100% { top: 100%; } }
 
-        .btn-iphone {
-            background: white;
-            color: black;
+        @keyframes scan-body {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* UI Buttons */
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 20;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
             border: none;
-            padding: 18px 45px;
-            border-radius: 30px;
-            font-weight: 900;
-            font-family: 'Orbitron';
+            font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-scan {
+            background: rgba(0, 242, 255, 0.8);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        }
+
+        .btn-record {
+            background: rgba(255, 0, 60, 0.8);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 1px solid #00f2ff;
+            color: #00f2ff;
+            font-size: 12px;
+            z-index: 20;
         }
     </style>
 </head>
 <body>
 
-    <h1 style="font-family: 'Orbitron'; margin-top: 30px; color: var(--neon-blue);">iPhone 17 Pro Scan</h1>
-    <p style="opacity: 0.6;">Ultra-HD Biometric Sensing</p>
+    <div class="status-badge">KOOSHIN AI | 4K 60FPS MODE</div>
 
-    <div class="camera-wrapper">
+    <div class="camera-container">
         <video id="webcam" autoplay playsinline></video>
-        <div class="scan-overlay"></div>
-        <div class="laser" id="laser"></div>
-    </div>
-
-    <div style="margin-top: 20px; padding: 0 20px;">
-        <input type="number" id="h" placeholder="Height (cm)" style="padding: 15px; border-radius: 10px; border: none; width: 120px; margin-right: 10px;">
-        <input type="number" id="w" placeholder="Weight (kg)" style="padding: 15px; border-radius: 10px; border: none; width: 120px;">
-        <br><br>
-        <button class="btn-iphone" onclick="startIPhoneScan()">Record & Scan</button>
+        <div class="laser-scanner" id="scanner"></div>
+        
+        <div class="controls">
+            <button class="btn btn-scan" onclick="toggleScan()">Start Scan</button>
+            <button class="btn btn-record" onclick="alert('Duubista waa bilaabatay!')">Record Video</button>
+        </div>
     </div>
 
     <script>
-        // High Definition Camera Settings
-        async function startHDCamera() {
+        async function initIPhoneCam() {
             const constraints = {
                 video: {
                     facingMode: "user",
-                    width: { ideal: 1280 },
-                    height: { ideal: 720 },
-                    frameRate: { ideal: 60 } // Si uu u noqdo smooth sidii iPhone
+                    width: { ideal: 1920 }, // Full HD
+                    height: { ideal: 1080 },
+                    frameRate: { ideal: 60 } // Smooth Video
                 }
             };
+
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                document.getElementById('webcam').srcObject = stream;
+                const video = document.getElementById('webcam');
+                video.srcObject = stream;
             } catch (err) {
-                console.error("Camera error: ", err);
+                console.error("Camera Error: ", err);
+                alert("Fadlan ogolow kamaradda si aad u isticmaasho HD Filter.");
             }
         }
-        startHDCamera();
 
-        function startIPhoneScan() {
-            document.getElementById('laser').style.display = "block";
-            // Halkan ku dar logic-gaagii hore ee lacagta iyo BMI-ga
-            setTimeout(() => {
-                alert("Scan Complete! Natiijada waa la xareeyay.");
-                document.getElementById('laser').style.display = "none";
-            }, 5000);
+        function toggleScan() {
+            const scanner = document.getElementById('scanner');
+            if (scanner.style.display === "block") {
+                scanner.style.display = "none";
+            } else {
+                scanner.style.display = "block";
+            }
         }
+
+        // Bilow kamaradda markay page-ka furto
+        initIPhoneCam();
     </script>
 </body>
 </html>
