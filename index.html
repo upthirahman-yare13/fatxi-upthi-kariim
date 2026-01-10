@@ -3,143 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACCA Somalia Portal | Eng. Kooshin</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>ACCA & AI Health Somalia | Eng. Kooshin Yare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        :root { --acca-red: #E31E24; --navy: #002B5B; --gold: #D4AF37; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; background: #fff; scroll-behavior: smooth; }
+        :root { --primary: #002B5B; --accent: #E31E24; --gold: #D4AF37; --bg: #f8f9fa; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; background: var(--bg); color: #333; scroll-behavior: smooth; }
         
-        /* Nav */
-        nav { background: var(--navy); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { color: var(--gold); font-family: 'Crimson Text', serif; font-size: 1.8rem; font-weight: bold; }
-        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 0.9rem; }
+        /* Premium Header */
+        nav { background: var(--primary); padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .logo { color: var(--gold); font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
 
-        /* Hero */
-        .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,43,91,0.8), rgba(0,43,91,0.8)), url('https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&q=80&w=1400');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: white; padding: 20px;
-        }
-        .hero h1 { font-family: 'Crimson Text', serif; font-size: 3.5rem; margin: 0; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 20px 0; }
+        /* Hero Section */
+        .hero { height: 60vh; background: linear-gradient(45deg, rgba(0,43,91,0.9), rgba(0,43,91,0.7)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1400'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 10%; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; max-width: 800px; }
 
-        /* Sections */
-        .section { padding: 60px 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #f9f9f9; padding: 25px; border-radius: 15px; border-top: 5px solid var(--acca-red); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* AI Tools Section */
+        .app-container { padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .app-card { background: white; border-radius: 30px; padding: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .app-card:hover { transform: translateY(-10px); }
+        .app-card i { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
+        
+        input, select { width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #eee; border-radius: 12px; outline: none; transition: 0.3s; font-family: 'Montserrat'; }
+        input:focus { border-color: var(--primary); }
+        .btn-action { background: var(--primary); color: white; border: none; padding: 18px 40px; border-radius: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 15px; }
 
-        /* Form */
-        .admission { background: var(--navy); color: white; display: flex; flex-wrap: wrap; gap: 40px; padding: 80px 5%; }
-        .form-box { flex: 1; background: white; padding: 30px; border-radius: 20px; color: #333; min-width: 300px; }
-        .form-box input, .form-box select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .btn-send { background: var(--acca-red); color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* Payment Section */
+        .payment-modal { display: none; margin-top: 20px; padding: 20px; border: 2px dashed var(--gold); border-radius: 20px; background: #fffdf0; }
+        .pay-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 10px; margin-top: 10px; cursor: pointer; font-weight: 700; border: 1px solid #ddd; }
 
-        /* Chatbot UI */
-        #chat-window { display: none; width: 320px; height: 450px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); position: fixed; bottom: 100px; right: 30px; z-index: 2000; flex-direction: column; overflow: hidden; border: 1px solid #eee; }
-        .ai-bubble { background: #f1f1f1; padding: 10px; border-radius: 15px 15px 15px 0; margin-bottom: 10px; align-self: flex-start; font-size: 0.85rem; }
-        .user-bubble { background: var(--navy); color: white; padding: 10px; border-radius: 15px 15px 0 15px; margin-bottom: 10px; align-self: flex-end; font-size: 0.85rem; }
-
-        footer { background: #001226; color: white; padding: 40px; text-align: center; font-size: 0.9rem; }
+        /* Footer */
+        footer { background: var(--primary); color: white; padding: 60px 5%; text-align: center; }
+        .footer-logo { font-size: 2rem; font-weight: 900; color: var(--gold); margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">ACCA SOMALIA</div>
+        <div class="logo">KOOSHIN GLOBAL</div>
         <div>
-            <a href="#papers">Papers</a>
-            <a href="#admission">Register</a>
-            <a href="https://wa.me/252613040087">Contact</a>
+            <a href="#health">Health AI</a>
+            <a href="#payment">Payments</a>
+            <a href="https://wa.me/252613040087">Support</a>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>Mustaqbalkaaga Maaliyadeed</h1>
-        <p>Ku baro ACCA gudaha Muqdisho si aad u hesho shahaado caalami ah oo laga aqoonsan yahay 180 wadan.</p>
-        <a href="#admission" style="background: var(--gold); color: var(--navy); padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 800; margin-top: 20px;">BILOW HADDA</a>
+        <h1>Innovation & Future</h1>
+        <p>Waxaan isku xirnay Caafimaadka, Waxbarashada, iyo Nidaamka Lacag-bixinta ugu casrisan Soomaaliya.</p>
     </header>
 
-    <section class="section" id="papers">
-        <h2 style="text-align: center; margin-bottom: 40px;">Heerarka ACCA</h2>
-        <div class="grid">
-            <div class="card"><h3>Applied Knowledge</h3><p>Waa 3-da imtixaan ee ugu horeeya: BT, MA, iyo FA.</p></div>
-            <div class="card"><h3>Applied Skills</h3><p>Waa 6 imtixaan oo ku saabsan xirfadaha shaqada maaliyadda.</p></div>
-            <div class="card"><h3>Strategic Professional</h3><p>Heerka ugu sareeya ee Hogaaminta iyo Maamulka.</p></div>
+    <div class="app-container" id="health">
+        <div class="app-card">
+            <i class="fas fa-weight"></i>
+            <h3>AI Weight Monitor</h3>
+            <p>Geli xogtaada si aad u hesho talo caafimaad oo dhammaystiran.</p>
+            <input type="number" id="h" placeholder="Dhererka (cm)">
+            <input type="number" id="w" placeholder="Miisaanka (kg)">
+            <button class="btn-action" onclick="calcBMI()">CABBIR HADDA</button>
+            <div id="res-bmi" style="margin-top: 20px; font-weight: bold;"></div>
         </div>
-    </section>
 
-    <section class="admission" id="admission">
-        <div style="flex: 1.5;">
-            <h2 style="font-size: 2.5rem;">Is-diiwaangeli Intake 2026</h2>
-            <p>Xafiiskayagu wuxuu ku yaal Dagmada Hodan. Buuxi foomka si aan kuu soo wacno.</p>
-        </div>
-        <div class="form-box">
-            <input type="text" id="name" placeholder="Magacaaga oo buuxa">
-            <input type="tel" id="phone" placeholder="Lambarkaaga">
-            <select id="level">
-                <option value="Knowledge">Applied Knowledge</option>
-                <option value="Skills">Applied Skills</option>
-            </select>
-            <button class="btn-send" onclick="sendWhatsApp()">SOO DIR CODSI</button>
-        </div>
-    </section>
-
-    <section class="section" style="text-align: center;">
-        <h2>📍 Xarunteena Hodan, Muqdisho</h2>
-        <div style="border-radius: 20px; overflow: hidden; margin-top: 20px;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15947.530376822163!2d45.29742465!3d2.04230875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843a850130d23%3A0x933010b98f24a0d0!2sHodan%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </section>
-
-    <div id="smart-chatbot" style="position: fixed; bottom: 30px; right: 30px; z-index: 9999;">
-        <div onclick="toggleChat()" style="background: var(--acca-red); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-            <i class="fas fa-comment-dots" style="color: white; font-size: 24px;"></i>
-        </div>
-        <div id="chat-window">
-            <div style="background: var(--navy); padding: 15px; color: white; display: flex; justify-content: space-between;">
-                <span>ACCA AI Assistant</span>
-                <span onclick="toggleChat()" style="cursor: pointer;">&times;</span>
-            </div>
-            <div id="chat-messages" style="flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column;">
-                <div class="ai-bubble">Asc! 👋 Ma rabtaa inaan kugu caawiyo is-diiwaangelinta ACCA?</div>
-            </div>
-            <div style="padding: 10px; border-top: 1px solid #eee; display: flex; gap: 5px;">
-                <button onclick="aiReply('Haa')" style="flex:1; border: 1px solid var(--acca-red); background: white; border-radius: 10px; cursor: pointer;">Haa</button>
-                <button onclick="aiReply('Qiimaha')" style="flex:1; border: 1px solid #777; background: white; border-radius: 10px; cursor: pointer;">Qiimaha</button>
+        <div class="app-card">
+            <i class="fas fa-hand-holding-droplet"></i>
+            <h3>Blood Type Finder</h3>
+            <p>Nidaamka AI-ga wuxuu falanqeynayaa xogta waalidka iyo hiddahaaga.</p>
+            <select id="parent-a"><option value="">Aabbaha Dhiiggiisa</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select>
+            <select id="parent-b"><option value="">Hooyada Dhiiggeeda</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select>
+            <button class="btn-action" onclick="showPay()">EEG NOOCA DHIIGGA</button>
+            
+            <div id="blood-pay" class="payment-modal">
+                <p style="color: var(--accent); font-weight: 800;">Adeeggan waa lacag ($1)</p>
+                <div class="pay-btn" onclick="finalPay('EVC Plus')"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Placeholder_logo.png" width="20"> EVC Plus</div>
+                <div class="pay-btn" onclick="finalPay('Premier Wallet')">💳 Premier Wallet</div>
+                <div class="pay-btn" onclick="finalPay('Bank Card')">🌍 International Card</div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>ACCA SOMALIA PORTAL © 2026 | Developed by Eng. Kooshin</p>
-        <p>WhatsApp: +252 61 3040087</p>
+        <div class="footer-logo">ENG. KOOSHIN YARE</div>
+        <p>Mogadishu, Somalia | Dagmada Hodan</p>
+        <div style="margin-top: 20px; font-size: 1.5rem;">
+            <i class="fab fa-whatsapp" style="margin: 0 15px; cursor: pointer;" onclick="window.open('https://wa.me/252613040087')"></i>
+            <i class="fab fa-linkedin" style="margin: 0 15px;"></i>
+            <i class="fab fa-github" style="margin: 0 15px;"></i>
+        </div>
+        <p style="margin-top: 30px; opacity: 0.6;">© 2026 All Rights Reserved. Powered by AI Technology.</p>
     </footer>
 
     <script>
-        function sendWhatsApp() {
-            const name = document.getElementById('name').value;
-            const level = document.getElementById('level').value;
-            window.open(`https://wa.me/252613040087?text=Asc, magacaygu waa ${name}. Waxaan rabaa heerka ${level}`);
+        function calcBMI() {
+            let height = document.getElementById('h').value / 100;
+            let weight = document.getElementById('w').value;
+            if(!height || !weight) return alert("Fadlan geli macluumaadka!");
+            let bmi = (weight / (height * height)).toFixed(1);
+            let cat = bmi < 18.5 ? "Miisaan Yar" : bmi < 25 ? "Caadi (Perfect)" : "Miisaan Dheeraad ah";
+            document.getElementById('res-bmi').innerHTML = `BMI-gaagu waa ${bmi} (${cat})`;
         }
 
-        function toggleChat() {
-            const win = document.getElementById('chat-window');
-            win.style.display = (win.style.display === 'none' || win.style.display === '') ? 'flex' : 'none';
+        function showPay() {
+            document.getElementById('blood-pay').style.display = "block";
+            window.location.hash = "blood-pay";
         }
 
-        function aiReply(choice) {
-            const msgArea = document.getElementById('chat-messages');
-            msgArea.innerHTML += `<div class="user-bubble">${choice}</div>`;
-            setTimeout(() => {
-                let reply = choice === 'Haa' ? "Fadlan buuxi foomka diiwaangelinta ee kor ku yaal ama nagala soo xiriir WhatsApp." : "Heerka koowaad waa $150 imtixaankiiba. Ma rabtaa faahfaahin kale?";
-                msgArea.innerHTML += `<div class="ai-bubble">${reply}</div>`;
-                msgArea.scrollTop = msgArea.scrollHeight;
-            }, 600);
+        function finalPay(method) {
+            let pA = document.getElementById('parent-a').value;
+            let pB = document.getElementById('parent-b').value;
+            if(!pA || !pB) return alert("Fadlan dooro dhiigga waalidka!");
+            
+            alert(`Waxaad dooratay ${method}. Habka lacag bixinta waa la furayaa...`);
+            // Halkan waxaa toos loogu xirayaa API-ga rasmiga ah
+            let msg = `Asc Eng. Kooshin, waxaan rabaa inaan ku bixiyo $1 ${method} si aan u ogaado dhiiggayga. Waalidkay waa ${pA} iyo ${pB}.`;
+            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(msg)}`);
         }
     </script>
 </body>
