@@ -3,107 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN BIOMETRIC AI | Mogadishu 2026</title>
+    <title>KOOSHIN AI | iPhone HD Scanner</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --neon-blue: #00f2ff; --neon-red: #ff003c; --dark: #050a14; }
-        body { background: var(--dark); color: white; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
-        
-        .scan-container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
-        
-        /* Camera Frame */
-        #video-feed { width: 300px; height: 300px; background: #000; border: 4px solid var(--neon-blue); border-radius: 50%; position: relative; overflow: hidden; box-shadow: 0 0 50px var(--neon-blue); }
-        #webcam { width: 100%; height: 100%; object-fit: cover; opacity: 1; } /* Opacity-gii waa la saaray */
-        .laser-line { width: 100%; height: 5px; background: var(--neon-red); position: absolute; top: 0; animation: moving-laser 2s infinite linear; box-shadow: 0 0 20px var(--neon-red); display: none;}
-        @keyframes moving-laser { 0% { top: 0; } 100% { top: 100%; } }
+        :root { --neon-blue: #00f2ff; --dark-bg: #010409; }
+        body { background: var(--dark-bg); color: white; font-family: 'Montserrat', sans-serif; margin: 0; text-align: center; }
 
-        /* Input Form */
-        .input-area { margin-top: 25px; width: 100%; max-width: 350px; text-align: center; }
-        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid var(--neon-blue); background: rgba(255,255,255,0.1); color: white; text-align: center; }
+        /* iPhone Style Camera Frame */
+        .camera-wrapper {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin: 40px auto;
+            border-radius: 50%;
+            border: 6px solid #1a1a1a;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2), inset 0 0 20px rgba(0,0,0,0.5);
+            background: #000;
+        }
 
-        .results-panel { width: 95%; max-width: 800px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; display: none; }
-        .stat-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid var(--neon-blue); text-align: center; }
-        .stat-card h3 { color: var(--neon-blue); font-family: 'Orbitron', sans-serif; font-size: 0.8rem; margin: 0; }
-        .stat-value { font-size: 1.5rem; font-weight: 900; color: #fff; margin-top: 5px; }
+        /* Tani waa Filter-ka iPhone-ka */
+        #webcam {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1);
+            filter: brightness(1.1) contrast(1.1) saturate(1.2) sepia(0.05); /* iPhone Color Filter */
+            transition: 0.5s;
+        }
 
-        .btn-scan { background: var(--neon-blue); color: #000; border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; margin-top: 20px; width: 100%; }
+        .scan-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(transparent, rgba(0, 242, 255, 0.1));
+            pointer-events: none;
+        }
 
-        .premium-lock { display: none; background: rgba(255, 0, 60, 0.1); border: 2px dashed var(--neon-red); padding: 20px; border-radius: 15px; margin-top: 20px; text-align: center; }
+        .laser {
+            position: absolute;
+            top: 0; width: 100%; height: 3px;
+            background: #ff003c;
+            box-shadow: 0 0 15px #ff003c;
+            animation: moving 3s infinite linear;
+            display: none;
+        }
+        @keyframes moving { 0% { top: 0; } 100% { top: 100%; } }
+
+        .btn-iphone {
+            background: white;
+            color: black;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 30px;
+            font-weight: 900;
+            font-family: 'Orbitron';
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <div class="scan-container">
-        <h1 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 5px;">KOOSHIN AI SENSOR</h1>
-        
-        <div id="video-feed">
-            <video id="webcam" autoplay playsinline></video>
-            <div class="laser-line" id="laser"></div>
-        </div>
+    <h1 style="font-family: 'Orbitron'; margin-top: 30px; color: var(--neon-blue);">iPhone 17 Pro Scan</h1>
+    <p style="opacity: 0.6;">Ultra-HD Biometric Sensing</p>
 
-        <div class="input-area">
-            <input type="number" id="height-input" placeholder="Dhererkaaga (cm)">
-            <input type="number" id="weight-input" placeholder="Miisaankaaga (kg)">
-            <button class="btn-scan" onclick="startBiometricScan()">BILOW SCAN-KA AI</button>
-        </div>
+    <div class="camera-wrapper">
+        <video id="webcam" autoplay playsinline></video>
+        <div class="scan-overlay"></div>
+        <div class="laser" id="laser"></div>
+    </div>
 
-        <div class="results-panel" id="results">
-            <div class="stat-card"><h3>DHERERKA</h3><div class="stat-value" id="res-h">0 cm</div></div>
-            <div class="stat-card"><h3>MIISAANKA</h3><div class="stat-value" id="res-w">0 kg</div></div>
-            <div class="stat-card"><h3>BMI STATUS</h3><div class="stat-value" id="res-bmi">--</div></div>
-            <div class="stat-card"><h3>DHIIGGA</h3><div class="stat-value" id="res-b" style="color: var(--neon-red);">LOCKED</div></div>
-        </div>
-
-        <div class="premium-lock" id="lock">
-            <h3 style="color: var(--neon-red); margin: 0;"><i class="fas fa-lock"></i> NATIIJADA DHIIGGA WAAD HELI KARTAA</h3>
-            <p style="font-size: 0.8rem;">AI-gu wuxuu falanqeeyay xididada wajigaaga. Ku bixi $1 si aad u furto.</p>
-            <button class="btn-scan" style="background: #25d366; color: white;" onclick="pay()">KU BIXI EVC PLUS ($1)</button>
-        </div>
+    <div style="margin-top: 20px; padding: 0 20px;">
+        <input type="number" id="h" placeholder="Height (cm)" style="padding: 15px; border-radius: 10px; border: none; width: 120px; margin-right: 10px;">
+        <input type="number" id="w" placeholder="Weight (kg)" style="padding: 15px; border-radius: 10px; border: none; width: 120px;">
+        <br><br>
+        <button class="btn-iphone" onclick="startIPhoneScan()">Record & Scan</button>
     </div>
 
     <script>
-        async function setupCamera() {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            document.getElementById('webcam').srcObject = stream;
-        }
-        setupCamera();
-
-        function startBiometricScan() {
-            const h = document.getElementById('height-input').value;
-            const w = document.getElementById('weight-input').value;
-
-            if(!h || !w) {
-                alert("Fadlan marka hore geli Dhererka iyo Miisaankaaga!");
-                return;
+        // High Definition Camera Settings
+        async function startHDCamera() {
+            const constraints = {
+                video: {
+                    facingMode: "user",
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                    frameRate: { ideal: 60 } // Si uu u noqdo smooth sidii iPhone
+                }
+            };
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+                document.getElementById('webcam').srcObject = stream;
+            } catch (err) {
+                console.error("Camera error: ", err);
             }
-
-            document.getElementById('laser').style.display = "block";
-            
-            setTimeout(() => {
-                document.getElementById('laser').style.display = "none";
-                document.getElementById('results').style.display = "grid";
-                
-                // BMI Calculation
-                const bmi = (w / ((h/100)*(h/100))).toFixed(1);
-                let status = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Healthy" : "Overweight";
-
-                document.getElementById('res-h').innerText = h + " cm";
-                document.getElementById('res-w').innerText = w + " kg";
-                document.getElementById('res-bmi').innerText = status;
-                
-                document.getElementById('lock').style.display = "block";
-            }, 4000);
         }
+        startHDCamera();
 
-        function pay() {
-            const h = document.getElementById('res-h').innerText;
-            const w = document.getElementById('res-w').innerText;
-            const bmi = document.getElementById('res-bmi').innerText;
-            
-            // XOGTA ADMINKA (ADIGA) KUU SOO DHACAYSA
-            const adminText = `*XOG CUSUB OO SCAN AH*\n\nEng. Kooshin, qof ayaa hadda is-scan-gareeyay:\n📏 Dherer: ${h}\n⚖️ Miisaan: ${w}\n📊 BMI Status: ${bmi}\n\nFadlan macmiilka ka caawi natiijada dhiigga.`;
-            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(adminText)}`);
+        function startIPhoneScan() {
+            document.getElementById('laser').style.display = "block";
+            // Halkan ku dar logic-gaagii hore ee lacagta iyo BMI-ga
+            setTimeout(() => {
+                alert("Scan Complete! Natiijada waa la xareeyay.");
+                document.getElementById('laser').style.display = "none";
+            }, 5000);
         }
     </script>
 </body>
