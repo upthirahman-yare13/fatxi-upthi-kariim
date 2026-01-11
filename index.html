@@ -1,92 +1,69 @@
-<!DOCTYPE html>
-<html lang="so">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN HUB | International Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --main-green: #064e3b; --accent-gold: #D4AF37; --glass: rgba(255, 255, 255, 0.1); }
-        body { font-family: 'Montserrat', sans-serif; background: #0f172a; color: white; margin: 0; padding-bottom: 90px; }
-        
-        /* Header & Language Switcher */
-        header { background: linear-gradient(135deg, #064e3b, #022c22); padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--accent-gold); }
-        .lang-selector { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .lang-btn { background: var(--glass); border: 1px solid white; color: white; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; }
-        
-        /* Quran Frame */
-        .quran-container { width: 95%; height: 70vh; margin: 20px auto; border-radius: 20px; overflow: hidden; background: white; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        iframe { width: 100%; height: 100%; border: none; }
-
-        /* Tasbih & Cards */
-        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); width: 90%; max-width: 500px; margin: 20px auto; padding: 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
-        .counter { font-size: 4rem; font-weight: bold; color: var(--accent-gold); }
-        .btn-action { background: var(--accent-gold); color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; width: 100%; cursor: pointer; }
-
-        /* Navigation Bottom */
-        .nav-bar { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid var(--glass); }
-        .nav-item { color: #94a3b8; font-size: 0.75rem; cursor: pointer; text-align: center; }
-        .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 4px; }
-        .active-item { color: var(--accent-gold); }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1 style="margin:0; font-family: 'Amiri'; letter-spacing: 2px;">KOOSHIN HUB</h1>
-    <div class="lang-selector">
-        <button class="lang-btn" onclick="changeLang('so')">🇸🇴 Somali</button>
-        <button class="lang-btn" onclick="changeLang('en')">🇺🇸 English</button>
-        <button class="lang-btn" onclick="changeLang('fr')">🇫🇷 French</button>
-        <button class="lang-btn" onclick="changeLang('ar')">🇸🇦 Arabic</button>
-    </div>
-</header>
-
-<div id="quran-sec" class="quran-container">
-    <iframe id="quran-frame" src="https://quran.com"></iframe>
-</div>
+<style>
+    /* Naqshad cusub oo loogu talagalay Tasbiixda badan */
+    .tasbih-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+    .tasbih-card {
+        background: rgba(255,255,255,0.08);
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid var(--accent-gold);
+    }
+    .tasbih-name { font-family: 'Amiri'; font-size: 1.2rem; margin-bottom: 10px; }
+    .counter-val { font-size: 2rem; font-weight: bold; margin-bottom: 10px; }
+</style>
 
 <div id="tasbih-sec" class="card" style="display:none;">
-    <h2 id="zikri-title" style="font-family:'Amiri'; font-size: 2.5rem; color: var(--accent-gold);">سُبْحَانَ اللَّهِ</h2>
-    <div class="counter" id="count">0</div>
-    <button class="btn-action" onclick="countStep()">TAABO / TAP</button>
+    <div class="tasbih-grid">
+        <div class="tasbih-card">
+            <div class="tasbih-name">سُبْحَانَ اللَّهِ</div>
+            <div class="counter-val" id="count-sub">0</div>
+            <button class="btn-action" onclick="countThis('sub')">TAABO</button>
+        </div>
+        <div class="tasbih-card">
+            <div class="tasbih-name">الْحَمْدُ لِلَّهِ</div>
+            <div class="counter-val" id="count-alx">0</div>
+            <button class="btn-action" onclick="countThis('alx')">TAABO</button>
+        </div>
+        <div class="tasbih-card">
+            <div class="tasbih-name">لَا إِلَهَ إِلَّا اللَّهُ</div>
+            <div class="counter-val" id="count-laa">0</div>
+            <button class="btn-action" onclick="countThis('laa')">TAABO</button>
+        </div>
+        <div class="tasbih-card">
+            <div class="tasbih-name">اللَّهُ أَكْبَرُ</div>
+            <div class="counter-val" id="count-akb">0</div>
+            <button class="btn-action" onclick="countThis('akb')">TAABO</button>
+        </div>
+    </div>
+    <button onclick="resetAll()" style="margin-top:20px; color:red; background:none; border:none;">Reset All</button>
 </div>
 
-<nav class="nav-bar">
-    <div class="nav-item active-item" onclick="showSection('quran-sec', this)"><i class="fas fa-book-open"></i>QUR'AAN</div>
-    <div class="nav-item" onclick="showSection('tasbih-sec', this)"><i class="fas fa-beads"></i>TASBIIX</div>
-</nav>
+<div id="quran-sec" class="quran-container">
+    <iframe id="quran-frame" src="https://quran.com?translations=55,227"></iframe>
+</div>
 
 <script>
-    function changeLang(lang) {
+    // Logic-ga Tasbiixda kala duwan
+    let counts = { sub: 0, alx: 0, laa: 0, akb: 0 };
+    function countThis(type) {
+        counts[type]++;
+        document.getElementById('count-' + type).innerText = counts[type];
+        if (navigator.vibrate) navigator.vibrate(40);
+    }
+    function resetAll() {
+        counts = { sub: 0, alx: 0, laa: 0, akb: 0 };
+        document.querySelectorAll('.counter-val').forEach(el => el.innerText = '0');
+    }
+
+    // Luuqadda Soomaaliga ee Quran.com
+    function setToSomali() {
         const frame = document.getElementById('quran-frame');
-        const urls = {
-            'so': 'https://quran.com?translations=so', // Tarjumada Soomaaliga
-            'en': 'https://quran.com?translations=131', // Tarjumada Ingiriisiga
-            'fr': 'https://quran.com?translations=31',  // Tarjumada Faransiiska
-            'ar': 'https://quran.com/ar'                // Carabi qura
-        };
-        frame.src = urls[lang];
-        alert("Luuqadda waa la beddelay: " + lang.toUpperCase());
+        frame.src = "https://quran.com?translations=55"; // 55 waa Somali translation
     }
-
-    function showSection(id, el) {
-        document.getElementById('quran-sec').style.display = 'none';
-        document.getElementById('tasbih-sec').style.display = 'none';
-        document.getElementById(id).style.display = 'block';
-        
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active-item'));
-        el.classList.add('active-item');
-    }
-
-    let count = 0;
-    function countStep() {
-        count++;
-        document.getElementById('count').innerText = count;
-        if (navigator.vibrate) navigator.vibrate(50);
-    }
+    // Markuu website-ka furmo toos ha ugu jiro Somali
+    window.onload = setToSomali;
 </script>
-
-</body>
-</html>
