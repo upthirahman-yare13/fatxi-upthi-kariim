@@ -1,108 +1,180 @@
-<div id="siira-sec" class="page">
-    <h2 style="text-align:center; color: var(--gold); font-family: 'Amiri';">سيرة النبي محمد ﷺ</h2>
-    <p style="text-align:center; color: #cbd5e1; font-size: 0.8rem;">Taariikhda laga soo bilaabo dhalashadii ilaa dhimashadii</p>
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App-ka Islaamka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --gold: #fbbf24;
+            --text: #f8fafc;
+        }
 
-    <div class="content-card">
-        <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=1000" alt="Nasab">
-        <div class="card-body">
-            <div class="arabic">نسب النبي ومولده</div>
-            <div class="somali">
-                <b>Nasabkiisa:</b> Isagu waa Maxamed binu Cabdullaahi binu Cabdil-Mudallib binu Haashim... ilaa Cadnaan. Waa kan ugu sharafta badan dadka nasab ahaan.<br><br>
-                <b>Dhalashadiisa:</b> Wuxuu dhashay Maalin Isniin ah, 12-ka Rabiicul-awal, Sannadkii Maroodiga. Waa sannadkii uu Abraha damcay inuu dumiyo Kacbada balse Alle ka difaacay. Wuxuu dhashay isagoo agoon ah oo aabihii dhintay isagoo uurka hooyadii ku jira.
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-bottom: 70px;
+        }
+
+        header {
+            background: var(--card);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .container { padding: 15px; max-width: 600px; margin: auto; }
+
+        /* Qaybta Siirada Styles */
+        .content-card {
+            background: var(--card);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-left: 4px solid var(--gold);
+        }
+
+        .content-card img { width: 100%; height: 180px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .arabic { 
+            font-family: 'Amiri', serif; 
+            font-size: 1.3rem; 
+            color: var(--gold); 
+            direction: rtl;
+            margin-bottom: 10px;
+        }
+        .somali { font-size: 0.95rem; line-height: 1.6; color: #cbd5e1; }
+
+        /* Qaybta Qur'aanka Styles */
+        .quran-container { display: none; }
+        iframe { width: 100%; height: 80vh; border: none; border-radius: 10px; }
+
+        /* Qaybta Tasbiix Styles */
+        .tasbih-container { 
+            display: none; 
+            text-align: center; 
+            padding-top: 50px; 
+        }
+        .counter-box {
+            font-size: 80px;
+            color: var(--gold);
+            margin: 20px 0;
+        }
+        .btn-tap {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--gold);
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Menu-ga Hoose */
+        nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: var(--card);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #334155;
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        nav button.active { color: var(--gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="page-title">Siirada Nabiga ﷺ</h1>
+</header>
+
+<div class="container">
+    
+    <div id="siira" class="tab-content">
+        <div class="content-card">
+            <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=500" alt="Nasab">
+            <div class="card-body">
+                <div class="arabic">نسب النبي ومولده</div>
+                <div class="somali"><b>Nasabka & Dhalashada:</b> Maxamed binu Cabdullaahi ﷺ wuxuu dhashay 12-ka Rabiicul Awal "Sannadkii Maroodiga". Wuxuu dhashay isagoo agoon ah, aabihii wuxuu dhintay isagoo uurka ku jira.</div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&w=500" alt="Hira">
+            <div class="card-body">
+                <div class="arabic">بداية الوحي</div>
+                <div class="somali"><b>Bilowgii Waxyiga:</b> Markii uu 40 sano jirsaday, waxaa malagga Jibriil ugu yimid Godka Xiraa, isagoo u keenay suuraddii koowaad ee "Iqra".</div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="card-body">
+                <div class="arabic">الهجرة والوفاة</div>
+                <div class="somali"><b>Hijradii & Geeridii:</b> Nabigu wuxuu u hijrooday Madiina isagoo dhisay dawlad Islaami ah. Wuxuu geeriyooday sannadkii 11aad ee Hijriyada, isagoo 63 sano jir ah.</div>
             </div>
         </div>
     </div>
 
-    <div class="content-card">
-        <img src="https://images.unsplash.com/photo-1542621334-a254cf47733d?q=80&w=1000" alt="Childhood">
-        <div class="card-body">
-            <div class="arabic">حياته قبل النبوة</div>
-            <div class="somali">
-                <b>Nuujintii:</b> Waxaa nuujisay Xaliimo Sacdiya oo barako badan ku heshay nuujintiisa. Markii uu 4 sano jiray waxaa dhacday "Shaqi-sadri" (Xabad-jeexintii) oo malaa'igtu qalbiyadiisa ka saartay qaybtii shaydaanka.<br><br>
-                <b>Kafaaladiisa:</b> Hooyadii Aamina waxay dhimatay isagoo 6 sano jir ah. Waxaa kafaalo qaaday baboowgii Cabdil-Mudallib, markii uu 8 sano jirayna awoowgii baa dhintay, markaasna adeerkiis Abuu Daalib ayaa la wareegay kafaaladiisa.
-            </div>
-        </div>
+    <div id="quran" class="tab-content quran-container">
+        <iframe src="https://quran.com/1?locale=so"></iframe>
     </div>
 
-    <div class="content-card">
-        <div class="card-body">
-            <div class="arabic">عمله بالرعي والتجارة</div>
-            <div class="somali">
-                <b>Adhi-raaca:</b> Nabigu wuxuu yaraantiisii u raaci jiray adhiga dadka reer Makka. Wuxuu yiri: "Ma jiro Nabi Alle soo diray oo aan adhi raacin."<br><br>
-                <b>Ganacsiga:</b> Wuxuu u shaqeeyay Khadiija bint Khuwaylid isagoo ganacsigeeda u qaaday Shaam. Waxay ku dooratay runtiisa iyo ammaanadiisa, markii dambena way is guursadeen.
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <img src="https://images.unsplash.com/photo-1610056494052-6a4f83a8368c?q=80&w=1000" alt="Cave Hira">
-        <div class="card-body">
-            <div class="arabic">بداية الوحي</div>
-            <div class="somali">
-                Markii uu 40 sano jiray, isagoo ku jira Godka Xiraa, ayaa Malagga Jibriil ugu yimid: <i>"Akhri: Magaca Rabbigaaga ee abuuray"</i>. Nabiga oo naxsan ayaa u yimid Khadiija, waxayna geysay Warqa binu Nawfal oo u sheegay inuu yahay Nabigii ugu dambeeyay.
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="card-body">
-            <div class="arabic">العهد المكي</div>
-            <div class="somali">
-                <b>Dacwada Qarsoodiga ah:</b> Waxay socotay 3 sano. Waxaa ugu horreeyay ee rumeeyay Khadiija, Cali, Abuu Bakar iyo Sayid binu Xaarisa.<br><br>
-                <b>Dacwada Muuqata:</b> Wuxuu fuulay Buurta Safa isagoo u yeeray qureysh. Waxay kala kulmeen cadaab iyo dhibaato, taas oo keentay in saxaabada qaar u hijroodaan Xabasha.
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="card-body">
-            <div class="arabic">عام الحزن والإسراء والمعراج</div>
-            <div class="somali">
-                Isla hal sano waxaa dhintay adeerkiis Abuu Daalib iyo xaaskiisii Khadiija, waana sababta loogu bixiyay "Sannadkii Murugada". Ka dib Alle wuxuu Nabiga dheciyay safarkii Israa iyo Micraaj ee loo kaxeeyay Baytul Maqdis iyo samooyinka sare.
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <img src="https://images.unsplash.com/photo-1564121211835-e88c852648ab?q=80&w=1000" alt="Madinah">
-        <div class="card-body">
-            <div class="arabic">الهجرة النبوية</div>
-            <div class="somali">
-                Ka dib markii dhibku ku badaday Makka, Nabigu iyo Abuu Bakar waxay u hijroodeen Madiina. Wuxuu dhisay Masjidka Qubaa, ka dibna Masjidka Nabiga. Madiina dhexdeeda wuxuu ku walaaleeyay Muhaajiriin iyo Ansaar.
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="card-body">
-            <div class="arabic">الغزوات والسرايا</div>
-            <div class="somali">
-                Nabigu (NNKH) wuxuu galay dagaallo badan si xaqu u sareeyo. Kuwa ugu waaweyn waxaa ka mid ah:<br>
-                * <b>Badr:</b> Sannadkii 2aad (Guusha Muslimiinta).<br>
-                * <b>Uxud:</b> Sannadkii 3aad.<br>
-                * <b>Khandaq:</b> Sannadkii 5aad.<br>
-                * <b>Furashadii Makka:</b> Sannadkii 8aad (Nabigu si naxariis leh ayuu u cafiyay reer Makka).
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="card-body">
-            <div class="arabic">صفات النبي ﷺ</div>
-            <div class="somali">
-                <b>Muuqaalkiisa:</b> Ma dheerayn ma gaabnayn, wejigiisu wuxuu u iftiimayay sidii dayaxa, wuxuu ahaa kan ugu quruxda badan dadka.<br><br>
-                <b>Aqlaaqdiisa:</b> Wuxuu ahaa kan ugu deeqsisan, ugu geesisan, uguna naxariista badan. Alle wuxuu ku sifeeyay: "Waxaana tahay qof leh aqlaaq aad u weyn."
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="card-body">
-            <div class="arabic">وفاة النبي ﷺ</div>
-            <div class="somali">
-                Nabigu (NNKH) wuxuu geeriyooday Maalin Isniin ah, 12-ka Rabiicul-awal, sannadkii 11aad ee Hijriyada, isagoo jira 63 sano. Wuxuu ku geeriyooday gurigii Caasha, waxaana lagu aasay isla halkaas.
-            </div>
-        </div>
+    <div id="tasbih" class="tab-content tasbih-container">
+        <h2 style="color: var(--gold);">Digital Tasbiix</h2>
+        <div class="counter-box" id="count">0</div>
+        <button class="btn-tap" onclick="increment()">TAABO</button>
+        <br><br>
+        <button onclick="reset()" style="color: #94a3b8; background:none; border:none;">Reset (Bilow mar kale)</button>
     </div>
 
 </div>
+
+<nav>
+    <button onclick="showTab('siira', 'Siirada Nabiga ﷺ')" id="btn-siira" class="active">SIIRADA</button>
+    <button onclick="showTab('quran', 'Qur\'aanka Kariimka')" id="btn-quran">QUR'AANKA</button>
+    <button onclick="showTab('tasbih', 'Tasbiix Digital')" id="btn-tasbih">TASBIIX</button>
+</nav>
+
+<script>
+    function showTab(tabId, title) {
+        // Qari dhammaan
+        document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+        
+        // Muuji midka la rabto
+        document.getElementById(tabId).style.display = 'block';
+        document.getElementById('page-title').innerText = title;
+        document.getElementById('btn-' + tabId).classList.add('active');
+    }
+
+    // Tasbiix Logic
+    let count = 0;
+    function increment() {
+        count++;
+        document.getElementById('count').innerText = count;
+    }
+    function reset() {
+        count = 0;
+        document.getElementById('count').innerText = count;
+    }
+</script>
+
+</body>
+</html>
