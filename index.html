@@ -43,6 +43,17 @@
             margin-bottom: 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-left: 6px solid var(--gold);
+            overflow: hidden;
+        }
+
+        /* Sawirada Styles */
+        .img-hero {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gold);
         }
 
         .arabic-head {
@@ -85,11 +96,12 @@
             scrollbar-width: none;
         }
         nav button {
-            flex: 0 0 auto; min-width: 90px;
+            flex: 0 0 auto; min-width: 80px;
             background: none; border: none; color: var(--sub);
             font-weight: bold; font-size: 11px; cursor: pointer;
         }
         nav button.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        .share-btn { color: #25D366 !important; font-weight: 800; }
 
         .hidden { display: none; }
     </style>
@@ -110,13 +122,16 @@
 
     <div id="sec-sira" class="hidden">
         <div class="content-box">
+            <img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=1000" class="img-hero">
             <div class="arabic-head">١. المولد والنسب والنشأة</div>
             <div class="somali-text">
                 <h3>Nasabka iyo Dhalashada</h3>
                 <p>Waa <b>Maxamed</b> binu Cabdullaahi binu Cabdil-Mudallib binu Haashim binu Cabdi-Manaaf binu Qusayi binu Kilaab... ilaa uu ka gaaro <span class="highlight">Nabi Ibraahim (C.S)</span>.</p>
                 
+                
 
 [Image of the family tree of Prophet Muhammad]
+
 
                 <p>Wuxuu dhashay Maalin Isniin ah, 12-ka Rabiicul-Awal, oo ku beegnayd <b>Sannadkii Maroodiga</b> (571 M). Waxaa dhashay hooyo Aamina bint Wahab, aabihiina wuxuu geeriyooday isagoo uurka ku jira. Markuu dhashay, nuur ka baxay hooyadii ayaa gaaray daaraha Shaam.</p>
                 <h3>Carruurnimadii iyo Agoonimada</h3>
@@ -127,6 +142,7 @@
         </div>
 
         <div class="content-box">
+            <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&q=80&w=1000" class="img-hero">
             <div class="arabic-head">٢. بعثة النبي ﷺ والدعوة</div>
             <div class="somali-text">
                 <h3>Waxyiga</h3>
@@ -137,6 +153,7 @@
         </div>
 
         <div class="content-box">
+            <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&q=80&w=1000" class="img-hero">
             <div class="arabic-head">٣. الهجرة وبناء الدولة</div>
             <div class="somali-text">
                 <h3>Madiina Al-Munawwara</h3>
@@ -150,6 +167,7 @@
         </div>
 
         <div class="content-box">
+            <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&q=80&w=1000" class="img-hero">
             <div class="arabic-head">٤. الوداع الأخير والوفاة</div>
             <div class="somali-text">
                 <h3>Xajkii Sagootiska</h3>
@@ -238,21 +256,39 @@
     <button onclick="tab('sec-sira', 'Siirada', this)">Siirada</button>
     <button onclick="tab('sec-tasbih', 'Tasbiix', this)">Tasbiix</button>
     <button onclick="tab('sec-xadiis', 'Xadiith', this)">Xadiith</button>
-    <button onclick="tab('sec-duco', 'Ducooyinka', this)">Ducooyin</button>
+    <button onclick="tab('sec-duco', 'Ducooyin', this)">Ducooyin</button>
+    <button onclick="shareApp()" class="share-btn">LA WADAAG</button>
 </nav>
 
 <script>
     function tab(id, title, btn) {
-        ['sec-quran', 'sec-sira', 'sec-tasbih', 'sec-xadiis', 'sec-duco'].forEach(s => document.getElementById(s).classList.add('hidden'));
+        ['sec-quran', 'sec-sira', 'sec-tasbih', 'sec-xadiis', 'sec-duco'].forEach(s => {
+            document.getElementById(s).classList.add('hidden');
+        });
         document.getElementById(id).classList.remove('hidden');
         document.getElementById('page-title').innerText = title;
         document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        if(btn) btn.classList.add('active');
         window.scrollTo(0,0);
     }
+
     let c = 0;
-    function count() { c++; document.getElementById('t-num').innerText = c; if(navigator.vibrate) navigator.vibrate(40); }
-    function resetT() { c = 0; document.getElementById('t-num').innerText = c; }
+    function count() {
+        c++;
+        document.getElementById('t-num').innerText = c;
+        if(navigator.vibrate) navigator.vibrate(40);
+    }
+
+    function resetT() {
+        c = 0;
+        document.getElementById('t-num').innerText = c;
+    }
+
+    function shareApp() {
+        const text = "Baro Siirada Nabiga ﷺ, dhageyso Qur'aanka, kuna tasbiixso App-kan: " + window.location.href;
+        const url = "https://wa.me/?text=" + encodeURIComponent(text);
+        window.open(url, '_blank');
+    }
 </script>
 
 </body>
