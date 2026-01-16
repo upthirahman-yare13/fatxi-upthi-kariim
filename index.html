@@ -3,100 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Mart General Trading | Cosmetics & Medical</title>
+    <title>World Mart General Trading</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --light-bg: #f9f9f9;
+            --gold: #d4af37;
+            --dark: #000000;
+            --white: #ffffff;
+            --gray: #f4f4f4;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: var(--light-bg); color: #333; line-height: 1.6; }
-        
-        /* Header */
-        header { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1512432334860-2e796cc7161b?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; color: white; padding: 100px 20px; text-align: center; }
-        header h1 { font-size: 3rem; margin: 0; letter-spacing: 2px; }
-        header p { font-size: 1.2rem; opacity: 0.9; }
 
-        /* Section Titles */
-        .section-title { text-align: center; margin: 50px 0 30px; }
-        .section-title h2 { border-bottom: 3px solid var(--accent-color); display: inline-block; padding-bottom: 10px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--gray);
+            color: var(--dark);
+            padding-bottom: 70px;
+        }
+
+        header {
+            background: var(--dark);
+            color: var(--gold);
+            padding: 30px 15px;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .container { padding: 15px; max-width: 900px; margin: auto; }
 
         /* Products Grid */
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 250px; object-fit: cover; }
-        .card-body { padding: 20px; text-align: center; }
-        .card-body h3 { margin: 10px 0; color: var(--primary-color); }
-        .card-body p { color: #777; font-size: 0.9rem; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-        /* Contact Button */
-        .cta { text-align: center; margin: 50px 0; }
-        .btn { background: #25d366; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            padding-bottom: 15px;
+        }
 
-        footer { background: var(--primary-color); color: white; text-align: center; padding: 30px; margin-top: 50px; }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .product-card h3 { font-size: 14px; margin: 10px 5px; height: 35px; overflow: hidden; }
+
+        .price {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .buy-btn {
+            background: var(--dark);
+            color: var(--gold);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Map Section */
+        .map-box {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        iframe { width: 100%; height: 300px; border-radius: 10px; border: none; }
+
+        /* Chatbot Overlay */
+        #chat-btn {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        #chat-window {
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        .chat-header { background: var(--dark); color: var(--gold); padding: 15px; border-radius: 15px 15px 0 0; font-weight: bold; }
+        .chat-body { padding: 15px; height: 200px; overflow-y: auto; font-size: 14px; }
+        .chat-footer { padding: 10px; border-top: 1px solid #eee; }
+
+        nav {
+            position: fixed; bottom: 0; width: 100%;
+            background: var(--dark); display: flex;
+            justify-content: space-around; padding: 15px 0;
+            border-top: 2px solid var(--gold);
+        }
+
+        nav a { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 12px; }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>World Mart General Trading</h1>
-    <p>Ku soo dhowaada xarunta Cosmetics-ka tayada leh iyo qalabka caafimaadka</p>
+    <h1>WORLD MART GENERAL TRADING</h1>
+    <p style="font-size: 12px; margin-top: 5px;">Luxury Cosmetics & Beauty</p>
 </header>
 
 <div class="container">
     
-    <div class="section-title">
-        <h2>Qaybta Cosmetics (Quruxda)</h2>
-    </div>
-    <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1596462502278-27bfac4033c8?auto=format&fit=crop&w=800&q=80" alt="Cosmetics">
-            <div class="card-body">
-                <h3>Kiriimada Wejiga</h3>
-                <p>Kiriimo dabiici ah oo loogu talagalay ilaalinta maqaarka.</p>
+    <div id="home">
+        <h2 style="text-align:center;">Alaabta Ugu Qaalisan</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500" alt="Perfume">
+                <h3>Chanel No.5 Parfum</h3>
+                <span class="price">$340.00</span>
+                <a href="https://wa.me/252617091691?text=Waxaan rabaa Chanel No.5" class="buy-btn">Dalbo</a>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Makeup">
-            <div class="card-body">
-                <h3>Makeup Casri ah</h3>
-                <p>Agabka makeup-ka ee ugu dambeeyay dunida.</p>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=500" alt="Cream">
+                <h3>La Mer Moisturizing Cream</h3>
+                <span class="price">$520.00</span>
+                <a href="https://wa.me/252617091691?text=Waxaan rabaa La Mer Cream" class="buy-btn">Dalbo</a>
             </div>
-        </div>
-    </div>
-
-    <div class="section-title">
-        <h2>Qaybta Daawooyinka & Caafimaadka</h2>
-    </div>
-    <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80" alt="Medicine">
-            <div class="card-body">
-                <h3>Daawooyinka Guud</h3>
-                <p>Daawooyin tayo leh oo laga soo dhoofiyo shirkadaha ugu waaweyn.</p>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfad45f1f6?w=500" alt="Lipstick">
+                <h3>Dior Prestige Skincare</h3>
+                <span class="price">$450.00</span>
+                <a href="https://wa.me/252617091691?text=Waxaan rabaa Dior Prestige" class="buy-btn">Dalbo</a>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1583324113626-70df0f44aaff?auto=format&fit=crop&w=800&q=80" alt="Medical Tools">
-            <div class="card-body">
-                <h3>Qalabka Caafimaadka</h3>
-                <p>Qalabka lagu baaro caafimaadka iyo agabka isbitaalada.</p>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?w=500" alt="Serum">
+                <h3>Estée Lauder Advanced Night</h3>
+                <span class="price">$180.00</span>
+                <a href="https://wa.me/252617091691?text=Waxaan rabaa Estee Lauder" class="buy-btn">Dalbo</a>
             </div>
         </div>
     </div>
 
-    <div class="cta">
-        <a href="https://wa.me/252617091691" class="btn">Nagala soo xiriir WhatsApp</a>
+    <div id="contact" class="map-box">
+        <h3>Goobtayada (Hargeysa)</h3>
+        <p>Afar Irdoodka, Hargeysa, Somaliland</p>
+        <p>Telefoon: 617091691</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3870.28186259068!2d44.0621458!3d9.5606654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1622b904e292d3df%3A0x7d6c62c906666666!2sAfar%20Irdoodka!5e0!3m2!1sen!2s!4v1700000000000"></iframe>
     </div>
 
 </div>
 
-<footer>
-    <p>&copy; 2026 World Mart General Trading | All Rights Reserved.</p>
-</footer>
+<div id="chat-btn" onclick="toggleChat()">💬</div>
+<div id="chat-window">
+    <div class="chat-header">World Mart Bot</div>
+    <div class="chat-body" id="chat-body">
+        <p><strong>Bot:</strong> Soo dhawow! Maxaan kaa caawiyaa? (Ku qor: Alaab, Location, ama Lacagta)</p>
+    </div>
+    <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="Halkan ku qor..." style="width:70%; padding:5px;">
+        <button onclick="sendMessage()" style="padding:5px;">Send</button>
+    </div>
+</div>
+
+<nav>
+    <a href="#" onclick="showSection('home')">HOME</a>
+    <a href="https://wa.me/252617091691">WHATSAPP</a>
+    <a href="#" onclick="showSection('contact')">LOCATION</a>
+</nav>
+
+<script>
+    function toggleChat() {
+        const win = document.getElementById('chat-window');
+        win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const body = document.getElementById('chat-body');
+        const text = input.value.toLowerCase();
+        
+        if(text === "") return;
+
+        body.innerHTML += `<p><strong>Adiga:</strong> ${input.value}</p>`;
+        
+        let response = "Waan helay fariintaada, fadlan nala soo xiriir 617091691.";
+        if(text.includes("alaab")) response = "Waxaan haynaa Chanel, Dior, iyo La Mer. Dhammaan waa kuwa ugu qaalisan.";
+        if(text.includes("location") || text.includes("meesha")) response = "Waxaan ku naalaa Hargeysa, Afar Irdoodka.";
+        if(text.includes("lacag")) response = "Waxaan ku qaadnaa EVC iyo Zaad. Qiimaha alaabtuna waa doolar.";
+
+        setTimeout(() => {
+            body.innerHTML += `<p><strong>Bot:</strong> ${response}</p>`;
+            body.scrollTop = body.scrollHeight;
+        }, 500);
+
+        input.value = "";
+    }
+
+    function showSection(id) {
+        // Simple switch for demo
+        alert("Waxaad dooratay: " + id.toUpperCase());
+    }
+</script>
 
 </body>
 </html>
